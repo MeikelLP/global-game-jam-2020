@@ -13,7 +13,7 @@ public class FocusCameraController : MonoBehaviour
 
     private void Update()
     {
-        if (!Input.GetMouseButton(0)) return;
+        if (!Input.GetMouseButton(1)) return;
 
         var r = target.rotation.eulerAngles;
         var y = Input.GetAxis("Mouse Y") * speed;
