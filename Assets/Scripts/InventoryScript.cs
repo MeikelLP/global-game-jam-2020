@@ -1,86 +1,71 @@
-using System;
-using Boo.Lang;
 using UnityEngine;
+using UnityTemplateProjects;
 
-namespace UnityTemplateProjects
+public class InventoryScript : MonoBehaviour
 {
-    public class InventoryScript : MonoBehaviour
+    public float xPositionChange = 0.2f;
+    public float yPositionChange = 5.0f;
+
+    public Inventory inventory = new Inventory();
+    public GameObject inventoryGameObject;
+
+    private void Start()
     {
-        public float initialX = -0.4f;
-        public float initialZ = -0.4f;
+      inventoryGameObject = GameObject.Find("Inventory");
+    }
 
-        public float positionChange = 0.2f;
-        
-        readonly List<GameObject> _inventoryItems = new List<GameObject>();
-        public GameObject _inventory;
-
-        private void Start()
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-          _inventory = GameObject.Find("Inventory");
+            Debug.Log("Left mouse clicked");
+            AddItemToInventory(null);
         }
 
-        void Update()
+        if (Input.GetMouseButtonDown(1))
         {
-            if (Input.GetMouseButtonDown(0))
+            Debug.Log("Right mouse clicked");
+            Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
+            RaycastHit hit;
+     
+            if( Physics.Raycast( ray, out hit, 100 ) )
             {
-                Debug.Log("Left mouse clicked");
-                AddItemToInventory(null);
-            }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                Debug.Log("Right mouse clicked");
-                Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
-                RaycastHit hit;
-         
-                if( Physics.Raycast( ray, out hit, 100 ) )
+                if (hit.transform.gameObject.TryGetComponent<PhonePart>(out var _))
                 {
-                    Debug.Log("hit something");
-                    if (hit.transform.gameObject.TryGetComponent<PhonePart>(out var _))
-                    {
-                        RemoveItemFromInventory(hit.transform.gameObject);
-                    }
-                }
-                else
-                {
-                    Debug.Log("No hit");
+                    RemoveItemFromInventory(hit.transform.gameObject);
                 }
             }
         }
+    }
 
-
-        public void AddItemToInventory(PhonePart phonePart)
+    private void AddItemToInventory(PhonePart phonePart)
+    {
+        var item = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        var vector2 = inventory.AddItem(item);
+        if (vector2 == null)
         {
-            var currentNumberOfItems = _inventoryItems.Count;
-            float x = initialX + (currentNumberOfItems * positionChange);
-            float y = 1;
-            float z = 0.4f;
-
-            var position = new Vector3(x, y, z);
-            GameObject item = CreateItem(position);
-            
-            // TODO consider deletion of items for position
-            
-            _inventoryItems.Add(item);
+            Destroy(item);
+            // inventory full
+            return;
         }
         
-        private void RemoveItemFromInventory(GameObject o)
-        {
-            _inventoryItems.Remove(o);
-            Destroy(o);
-        }
-
-        private GameObject CreateItem(Vector3 position)
-        {
-            //spawn object
-            GameObject item = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        var x = vector2.Value.x * xPositionChange;
+        var y = vector2.Value.y * yPositionChange;
+        var z = 1f;
+        
+        var position = new Vector3(x, y, z);
             
-            item.transform.parent = _inventory.transform;
-            item.transform.localPosition = position;
-
-            item.AddComponent<PhonePart>();
-            
-            return item;
+        item.transform.parent = inventoryGameObject.transform;
+        item.transform.localPosition = position;
+        item.AddComponent<PhonePart>();
+    }
+    
+    private void RemoveItemFromInventory(GameObject o)
+    {
+        GameObject removedItem = inventory.RemoveItem(o);
+        if (removedItem != null)
+        {
+            Destroy(removedItem);
         }
     }
 }

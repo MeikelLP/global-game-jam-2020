@@ -360,10 +360,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5363205219c742068c76febb62364e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialX: -0.4
-  initialZ: -0.4
-  positionChange: 0.2
-  _inventory: {fileID: 2131641833}
+  xPositionChange: 0.2
+  yPositionChange: 2
+  inventoryGameObject: {fileID: 2131641833}
 --- !u!65 &2131641836
 BoxCollider:
   m_ObjectHideFlags: 0
