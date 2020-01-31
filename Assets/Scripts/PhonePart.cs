@@ -1,5 +1,10 @@
+using System;
 using UnityEngine;
 
-public class PhonePart : MonoBehaviour
+namespace UnityTemplateProjects
 {
+    public class PhonePart : MonoBehaviour
+    {
+        private string name;
+    }
 }
