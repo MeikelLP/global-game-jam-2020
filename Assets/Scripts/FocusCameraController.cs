@@ -5,6 +5,7 @@ public class FocusCameraController : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private float speed = 10;
+    private Vector3 rot;
 
     private void Start()
     {
@@ -15,9 +16,7 @@ public class FocusCameraController : MonoBehaviour
     {
         if (!Input.GetMouseButton(1)) return;
 
-        var r = target.rotation.eulerAngles;
-        var y = Input.GetAxis("Mouse Y") * speed;
-        var x = Input.GetAxis("Mouse X") * speed;
-        target.rotation = Quaternion.Euler(r.x + y, r.y - x, r.z);
+        target.Rotate(Vector3.up + transform.forward, Input.GetAxis("Mouse X") * speed);
+        target.Rotate(Vector3.left + transform.forward, Input.GetAxis("Mouse Y") * speed);
     }
 }
