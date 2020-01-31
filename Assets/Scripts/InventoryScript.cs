@@ -23,11 +23,33 @@ namespace UnityTemplateProjects
         {
             if (Input.GetMouseButtonDown(0))
             {
-                MoveItemToInventory(null);
+                Debug.Log("Left mouse clicked");
+                AddItemToInventory(null);
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                Debug.Log("Right mouse clicked");
+                Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
+                RaycastHit hit;
+         
+                if( Physics.Raycast( ray, out hit, 100 ) )
+                {
+                    Debug.Log("hit something");
+                    if (hit.transform.gameObject.TryGetComponent<PhonePart>(out var _))
+                    {
+                        RemoveItemFromInventory(hit.transform.gameObject);
+                    }
+                }
+                else
+                {
+                    Debug.Log("No hit");
+                }
             }
         }
 
-        public void MoveItemToInventory(Item phoneComponent)
+
+        public void AddItemToInventory(PhonePart phonePart)
         {
             var currentNumberOfItems = _inventoryItems.Count;
             float x = initialX + (currentNumberOfItems * positionChange);
@@ -35,13 +57,17 @@ namespace UnityTemplateProjects
             float z = 0.4f;
 
             var position = new Vector3(x, y, z);
-            Debug.Log("Creating cube with position" + position);
-            
-            // TODO set position depending on the number items in the inventory
-            
             GameObject item = CreateItem(position);
             
+            // TODO consider deletion of items for position
+            
             _inventoryItems.Add(item);
+        }
+        
+        private void RemoveItemFromInventory(GameObject o)
+        {
+            _inventoryItems.Remove(o);
+            Destroy(o);
         }
 
         private GameObject CreateItem(Vector3 position)
@@ -51,13 +77,10 @@ namespace UnityTemplateProjects
             
             item.transform.parent = _inventory.transform;
             item.transform.localPosition = position;
+
+            item.AddComponent<PhonePart>();
             
             return item;
         }
-    }
-
-    public class Item
-    {
-        private String name;
     }
 }
