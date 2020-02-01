@@ -94,16 +94,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dependsOn:
-<<<<<<< HEAD
-  - {fileID: 1518687525694783578}
-  title: CameraBump
-  broken: 0
-  price: 100
-=======
   - {fileID: 7059095903963323281}
   title: CameraBump
   broken: 0
->>>>>>> remotes/origin/master
+  price: 100
 --- !u!64 &7420414136597301505
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -212,16 +206,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dependsOn:
-<<<<<<< HEAD
-  - {fileID: 7059095903963323281}
-  title: Body
-  broken: 0
-  price: 45
-=======
   - {fileID: 7703488912878220825}
   title: Body
   broken: 0
->>>>>>> remotes/origin/master
+  price: 45
 --- !u!64 &6712288120531461027
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -245,11 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7477363687807765033}
-<<<<<<< HEAD
-  - component: {fileID: 1576054601340735398}
-=======
   - component: {fileID: 1287640595}
->>>>>>> remotes/origin/master
   m_Layer: 0
   m_Name: Oneplus_6
   m_TagString: Untagged
@@ -281,11 +265,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 300}
-<<<<<<< HEAD
---- !u!114 &1576054601340735398
-=======
 --- !u!114 &1287640595
->>>>>>> remotes/origin/master
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,17 +375,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a317c4f87c8d4d0e8d4b1bd378e2e438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  dependsOn: []
-  title: Screen
-  broken: 0
-  price: 200
-=======
   dependsOn:
   - {fileID: 1518687525694783578}
   title: Screen
   broken: 0
->>>>>>> remotes/origin/master
+  price: 200
 --- !u!64 &8106263506356311501
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -513,17 +487,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a317c4f87c8d4d0e8d4b1bd378e2e438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  dependsOn:
-  - {fileID: 5345505875889341106}
-  title: Lid
-  broken: 0
-  price: 20
-=======
   dependsOn: []
   title: Lid
   broken: 0
->>>>>>> remotes/origin/master
+  price: 20
 --- !u!64 &6424641725610323721
 MeshCollider:
   m_ObjectHideFlags: 0
