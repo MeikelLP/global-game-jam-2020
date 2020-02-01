@@ -76,16 +76,16 @@ public class Assembler : MonoBehaviour
             {
                 switch (toolMode)
                 {
-                    case ToolMode.Assemble when !part.Assemblable():
-                        // TODO show ui message that part can not be assembled 
+                    case ToolMode.Assemble when !part.Assemblable:
+                        // TODO show ui message that part can not be assembled
                         Debug.Log("Item can not be assembled");
                         return;
                     case ToolMode.Assemble:
                         inventory.Remove(part);
                         break;
-                    case ToolMode.Disassemble when !part.Disassemblable():
+                    case ToolMode.Disassemble when !part.Disassemblable:
                         Debug.Log("Item can not be disassembled");
-                        // TODO show ui message that part can not be dissembled 
+                        // TODO show ui message that part can not be dissembled
                         break;
                     case ToolMode.Disassemble:
                         inventory.Add(part);
@@ -93,7 +93,7 @@ public class Assembler : MonoBehaviour
                 }
             }
         }
-        
+
         progressIcon.fillAmount = _progress;
     }
 
