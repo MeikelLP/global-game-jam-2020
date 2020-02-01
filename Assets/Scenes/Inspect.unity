@@ -440,9 +440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5363205219c742068c76febb62364e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstItemX: -0.2
+  firstItemX: 0.1
   firstItemY: 1
-  firstItemZ: 1
+  firstItemZ: 0
   xPositionChange: -0.05
   scaleFactor: 0.25
   inventoryGameObject: {fileID: 2131641833}
@@ -1251,7 +1251,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409969005}
-  m_LocalRotation: {x: 0.00000008954613, y: -0.9876589, z: 0.15662046, w: 0.000000022483352}
+  m_LocalRotation: {x: 9.734188e-10, y: -0.9876583, z: 0.15662406, w: 1.5436594e-10}
   m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1855,14 +1855,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903154441}
-  m_LocalRotation: {x: 0.00000008954613, y: -0.9876589, z: 0.15662046, w: 0.000000022483352}
+  m_LocalRotation: {x: 9.734188e-10, y: -0.9876583, z: 0.15662406, w: 1.5436594e-10}
   m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1617247584}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 68.199005, y: 0, z: 0.008}
+  m_LocalEulerAnglesHint: {x: 18.022001, y: -192.4, z: 0}
 --- !u!114 &1903154444
 MonoBehaviour:
   m_ObjectHideFlags: 0
