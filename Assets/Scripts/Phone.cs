@@ -28,6 +28,27 @@ public class Phone : MonoBehaviour
         }
     }
 
+    public void RemovePart(PhonePart toRemove)
+    {
+        var currentNumberOfParts = parts.Length;
+        for (int i = 0; i < currentNumberOfParts; i++)
+        {
+            if (parts[i] == toRemove)
+            {
+                // switch the last element with the current
+                parts[i] = parts[currentNumberOfParts - 1];
+                return;
+            }
+        }
+    }
+    
+    public void AddPart(PhonePart toAdd)
+    {
+        // TODO do unique check
+        // TODO do out of bounds check
+        parts[parts.Length] = toAdd;
+    }
+
     /// <summary>
     /// The phone must be complete and no part can be broken 
     /// </summary>

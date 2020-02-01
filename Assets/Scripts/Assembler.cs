@@ -73,6 +73,7 @@ public class Assembler : MonoBehaviour
                                 break;
                             case ToolMode.Assemble:
                                 inventory.Remove(part);
+                                part.Phone.AddPart(part);
                                 break;
                             case ToolMode.Disassemble when !part.Disassemblable:
                                 Debug.Log("Item can not be disassembled");
@@ -80,6 +81,7 @@ public class Assembler : MonoBehaviour
                                 break;
                             case ToolMode.Disassemble:
                                 inventory.Add(part);
+                                part.Phone.RemovePart(part);
                                 break;
                         }
                     }
