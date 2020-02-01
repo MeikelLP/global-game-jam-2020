@@ -10,6 +10,8 @@ public class ItemShopBehaviour : MonoBehaviour
         public KeyCode _open;
     
         private GameObject _scrollView;
+
+        private List<Image> _images;
         
         // Start is called before the first frame update
         void Start()
