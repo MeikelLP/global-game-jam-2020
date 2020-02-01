@@ -1504,6 +1504,12 @@ PrefabInstance:
       propertyPath: contentPage
       value: 
       objectReference: {fileID: 502001358}
+    - target: {fileID: 534763640176150299, guid: c6c87f17fc6387f4c86f9bba4dd187f8,
+        type: 3}
+      propertyPath: phones.Array.data[0]
+      value: 
+      objectReference: {fileID: 1287640595, guid: 1f32dffbd8ec2244ca2c230b33a9c21d,
+        type: 3}
     - target: {fileID: 534763640176150300, guid: c6c87f17fc6387f4c86f9bba4dd187f8,
         type: 3}
       propertyPath: m_Name
