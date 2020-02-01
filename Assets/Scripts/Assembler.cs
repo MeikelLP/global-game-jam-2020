@@ -35,7 +35,7 @@ public class Assembler : MonoBehaviour
         {
             if (hit.collider.gameObject.TryGetComponent<PhonePart>(out var part))
             {
-                var toolMode = PhoneSelection.Instance.toolMode;
+                var toolMode = Toolbar.Instance.toolMode;
                 var color = toolMode == ToolMode.Assemble ? assembleColor : disassembleColor;
                 var iconPosition = camera.WorldToScreenPoint(hit.point);
 

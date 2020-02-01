@@ -4,11 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PhoneSelection : MonoBehaviour
+public class Toolbar : MonoBehaviour
 {
-    public static PhoneSelection Instance { get; private set; }
+    public static Toolbar Instance { get; private set; }
 
-    public Transform phone;
     [SerializeField] private TextMeshProUGUI toolModeText;
     [HideInInspector] public ToolMode toolMode;
     [SerializeField] private KeyCode key = KeyCode.S;
@@ -18,7 +17,6 @@ public class PhoneSelection : MonoBehaviour
         if (Instance != null) Destroy(this);
         Instance = this;
 
-        if(!phone) throw new ArgumentNullException(nameof(phone));
         if(!toolModeText) throw new ArgumentNullException(nameof(toolModeText));
 
         toolMode = ToolMode.Disassemble;
