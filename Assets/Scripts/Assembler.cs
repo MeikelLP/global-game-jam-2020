@@ -35,16 +35,18 @@ public class Assembler : MonoBehaviour
         Cursor.visible = true;
         if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out var hit))
         {
+            _progress = 0;
             // nothing hit
             return;
         }
 
         if (!hit.collider.gameObject.TryGetComponent<PhonePart>(out var part))
         {
+            _progress = 0;
             // no phone part hit
             return;
         }
-        
+
         var toolMode = PhoneSelection.Instance.toolMode;
         var color = toolMode == ToolMode.Assemble ? assembleColor : disassembleColor;
         var iconPosition = camera.WorldToScreenPoint(hit.point);
@@ -59,7 +61,7 @@ public class Assembler : MonoBehaviour
             _progress = 0;
             _selected = part;
         }
-        
+
         if (Input.GetKeyUp(key))
         {
             _isReleased = true;
@@ -72,41 +74,32 @@ public class Assembler : MonoBehaviour
 
             if (_progress >= 1)
             {
-        
-            switch (toolMode)
-            {
-                case ToolMode.Assemble when !part.Assemblable():
-                    // TODO show ui message that part can not be assembled 
-                    Debug.Log("Item can not be assembled");
-                    return;
-                case ToolMode.Assemble:
-                    inventory.Remove(part);
-                    break;
-                case ToolMode.Disassemble when !part.Disassemblable():
-                    Debug.Log("Item can not be disassembled");
-                    // TODO show ui message that part can not be dissembled 
-                    break;
-                case ToolMode.Disassemble:
-                    inventory.Add(part);
-                    break;
+                switch (toolMode)
+                {
+                    case ToolMode.Assemble when !part.Assemblable():
+                        // TODO show ui message that part can not be assembled 
+                        Debug.Log("Item can not be assembled");
+                        return;
+                    case ToolMode.Assemble:
+                        inventory.Remove(part);
+                        break;
+                    case ToolMode.Disassemble when !part.Disassemblable():
+                        Debug.Log("Item can not be disassembled");
+                        // TODO show ui message that part can not be dissembled 
+                        break;
+                    case ToolMode.Disassemble:
+                        inventory.Add(part);
+                        break;
+                }
+
+                progressIcon.fillAmount = _progress;
             }
-            progressIcon.fillAmount = _progress;
-            }
-            else
-            {
-                _progress = 0;
-            }
-        }
-        else
-        {
-            _progress = 0;
-        }
         }
     }
 
     private void OnDestroy()
     {
-        icon.gameObject.SetActive(false);
+        hoverIcon.gameObject.SetActive(false);
         Cursor.visible = true;
     }
 }
