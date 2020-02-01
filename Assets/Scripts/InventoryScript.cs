@@ -1,4 +1,5 @@
 using System;
+using PhoneScripts;
 using UnityEngine;
 
 public class InventoryScript : MonoBehaviour
@@ -14,6 +15,8 @@ public class InventoryScript : MonoBehaviour
     public Inventory inventory = new Inventory();
     public GameObject inventoryGameObject;
 
+    public Transform ActivePhoneTransform  { get; set; }
+    
     private void Start()
     {
         if (!inventoryGameObject) throw new NullReferenceException(nameof(inventoryGameObject));
@@ -31,7 +34,6 @@ public class InventoryScript : MonoBehaviour
             return;
         }
 
-        
         phonePart.Assembled = false;
         item.transform.localScale = CalculateItemScale(item);
         item.transform.localPosition = CalculateItemPosition(vector2.Value);
@@ -49,7 +51,7 @@ public class InventoryScript : MonoBehaviour
 
             // reset pos
             var t = removedItem.transform;
-            t.parent.SetParent(PhoneSelection.Instance.phone, false);
+            t.parent.SetParent(ActivePhoneTransform, false);
             t.localPosition = phonePart.OriginalLocalPosition;
             t.localRotation = phonePart.OriginalLocalRotation;
             phonePart.Assembled = true;
