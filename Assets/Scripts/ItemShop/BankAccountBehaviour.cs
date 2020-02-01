@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BankAccountBehaviour : MonoBehaviour
 {
-    [SerializeField] private float _money;
+    public float money;
     
     // Start is called before the first frame update
     void Start()
@@ -13,14 +13,13 @@ public class BankAccountBehaviour : MonoBehaviour
 
     public bool Debit(float value)
     {
-        float temp = _money;
-        _money -= value;
-        if (_money < 0)
+        float temp = money;
+        money = money - value;
+        if (money < 0)
         {
-            _money = temp;
+            money = temp;
             return false;
         }
-
         return true;
     }
 

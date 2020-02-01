@@ -10,6 +10,7 @@ public class PhonePart : MonoBehaviour
     public string title;
     public bool broken;
 
+    public float price;
     public Vector3 OriginalLocalPosition { get; set; }
     public Quaternion OriginalLocalRotation { get; set; }
 

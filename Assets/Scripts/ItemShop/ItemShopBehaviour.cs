@@ -14,15 +14,22 @@ public class ItemShopBehaviour : MonoBehaviour
 
     private List<Image> _images;
 
-    public ManagerBehaviour _manager;
+    public ShopManagerBehaviour shopManager;
 
-    public GameObject _button;
+    public GameObject button;
+
     // Start is called before the first frame update
     void Start()
     {
         _keyInfoText = GetComponentInChildren<Text>();
         _keyInfoText.text = "[" + _open.ToString() + "] Shop";
         contentPage.SetActive(false);
+        StartCoroutine(WaitForFillShop());
+    }
+
+    private IEnumerator WaitForFillShop()
+    {
+        yield return new WaitUntil(() => shopManager.isListFilled);
         FillShop();
     }
 
@@ -44,11 +51,13 @@ public class ItemShopBehaviour : MonoBehaviour
 
     private void FillShop()
     {
-        foreach (var phonePart in _manager.phoneComponentDictionary)
+        foreach (var phonePart in shopManager.phoneComponentList)
         {
-            GameObject newButton = Instantiate(_button,Vector3.zero,Quaternion.identity,contentPage.transform);
-            newButton.GetComponent<Button>().onClick.AddListener((() => _manager.BuyComponent(phonePart.Key)));
+            GameObject newButton = Instantiate(button,Vector3.zero,Quaternion.identity,contentPage.transform);
+            newButton.GetComponent<Button>().onClick.AddListener((() => shopManager.BuyComponent(phonePart)));
             newButton.transform.SetParent(contentPage.transform);
         }
+
+        Debug.Log("shop filled!: " + shopManager.phoneComponentList.Count);
     }
 }
