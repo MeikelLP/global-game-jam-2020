@@ -1,14 +1,16 @@
+using System;
 using UnityEngine;
 
 public class InventoryScript : MonoBehaviour
 {
     public float firstItemX = -0.2f;
-    public float firstItemY = 0.5f;
+    public float firstItemY = 1f;
     public float firstItemZ = 1f;
 
     public float xPositionChange = 0.2f;
-    public float yPositionChange = 1f;
 
+    public float scaleFactor = 0.25f;
+    
     public Inventory inventory = new Inventory();
     public GameObject inventoryGameObject;
 
@@ -57,7 +59,7 @@ public class InventoryScript : MonoBehaviour
     private Vector3 CalculateItemPosition(Vector2 vector2)
     {
         var x = firstItemX + vector2.x * xPositionChange;
-        var y = firstItemY + vector2.y * yPositionChange;
+        var y = firstItemY;
         var z = firstItemZ;
         var position = new Vector3(x, y, z);
         return position;
@@ -67,9 +69,9 @@ public class InventoryScript : MonoBehaviour
     {
         var parentScale = inventoryGameObject.transform.localScale;
         var itemScale = item.transform.localScale;
-        var newX = 1 / (parentScale.x * itemScale.x);
-        var newY = 1 / (parentScale.y * itemScale.z);
-        var newZ = 1 / (parentScale.z * itemScale.z);
+        var newX = scaleFactor / (parentScale.x * itemScale.x);
+        var newY = scaleFactor / (parentScale.y * itemScale.z);
+        var newZ = scaleFactor / (parentScale.z * itemScale.z);
         
         return new Vector3(newX, newY, newZ);
     }
