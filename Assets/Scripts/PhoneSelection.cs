@@ -1,5 +1,6 @@
 using System;
 using DefaultNamespace;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class PhoneSelection : MonoBehaviour
     public static PhoneSelection Instance { get; private set; }
 
     public Transform phone;
-    [SerializeField] private Text toolModeText;
+    [SerializeField] private TextMeshProUGUI toolModeText;
     [HideInInspector] public ToolMode toolMode;
     [SerializeField] private KeyCode key = KeyCode.S;
 
@@ -32,7 +33,7 @@ public class PhoneSelection : MonoBehaviour
 
     private void ChangeUI()
     {
-        toolModeText.text = $"Tool: {toolMode} (<color=yellow>{key}</color>)";
+        toolModeText.text = $"{toolMode} (<color=yellow>{key}</color>)";
     }
 
     // Update is called once per frame
