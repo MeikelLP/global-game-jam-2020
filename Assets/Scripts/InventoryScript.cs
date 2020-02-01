@@ -14,10 +14,10 @@ public class InventoryScript : MonoBehaviour
 
     private void Start()
     {
-        inventoryGameObject = GameObject.Find("Inventory");
+        if (!inventoryGameObject) throw new NullReferenceException(nameof(inventoryGameObject));
     }
 
-    public void AddItemToInventory(PhonePart phonePart)
+    public void Add(PhonePart phonePart)
     {
         var item = phonePart.gameObject;
         var vector2 = inventory.AddItem(item);
@@ -25,21 +25,32 @@ public class InventoryScript : MonoBehaviour
         {
             Destroy(item);
             // inventory full
+            Debug.Log("INVENTORY FULL"); // TODO to UI message
             return;
         }
 
+        
+        phonePart.Assembled = false;
         item.transform.localScale = CalculateItemScale(item);
         item.transform.localPosition = CalculateItemPosition(vector2.Value);
         item.transform.localRotation = Quaternion.identity;
         item.transform.SetParent( inventoryGameObject.transform, false);
     }
 
-    public void RemoveItemFromInventory(GameObject o)
+    public void Remove(PhonePart part)
     {
-        var removedItem = inventory.RemoveItem(o);
+        var removedItem = inventory.RemoveItem(part.gameObject);
         if (removedItem)
         {
-            Destroy(removedItem);
+            // ReSharper disable once PossibleNullReferenceException
+            var phonePart = removedItem.GetComponent<PhonePart>();
+
+            // reset pos
+            var t = removedItem.transform;
+            t.parent.SetParent(PhoneSelection.Instance.phone, false);
+            t.localPosition = phonePart.originalLocalPosition;
+            t.localRotation = phonePart.originalLocalRotation;
+            phonePart.Assembled = true;
         }
     }
 
