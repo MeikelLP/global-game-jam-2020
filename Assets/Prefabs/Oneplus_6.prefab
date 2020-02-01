@@ -332,6 +332,7 @@ MonoBehaviour:
   - {fileID: 7845798748472578785}
   - {fileID: 5632051119144073543}
   - {fileID: 6346664676863622526}
+  title: OnePlus 6
 --- !u!64 &6812210625167407748
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -1,17 +1,17 @@
 using System;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = System.Random;
 
 namespace PhoneScripts
 {
+    // This script will simply instantiate the Prefab when the game starts.
     public class PhoneSpawner : MonoBehaviour
     {
         public static PhoneSpawner Instance { get; private set; }
+        public Phone ActivePhone { get; private set; }
 
         private readonly Random _random = new Random();
-    
+
         public GameObject phonePosition;
         public Phone[] phonePrefabs;
 
@@ -19,28 +19,38 @@ namespace PhoneScripts
         public PhoneFlipper phoneFlipper;
         public InventoryScript inventoryScript;
 
-        // This script will simply instantiate the Prefab when the game starts.
-        private void Start()
+        // will be initialized from bootstrapper at runtime
+        public void Initialize()
         {
-            if(!phonePosition) throw new NullReferenceException(nameof(phonePosition));
+            if (Instance != null) return;
+            if (!phonePosition) throw new NullReferenceException(nameof(phonePosition));
             if (phonePrefabs.Length == 0)
             {
                 throw new InvalidOperationException("At least one phone prefab must be assigned");
             }
-            
+
+            Instance = this;
+
             Spawn();
         }
-    
+
+#if UNITY_EDITOR
+        private void Start()
+        {
+            Initialize();
+        }
+#endif
+
         public void Spawn()
         {
-            var phonePrefabIndex = _random.Next(phonePrefabs.Length-1);
+            var phonePrefabIndex = _random.Next(phonePrefabs.Length - 1);
             var phonePrefab = phonePrefabs[phonePrefabIndex];
 
             // Instantiate at position (0, 0, 0) and zero rotation.
-            var activePhone = Instantiate(phonePrefab, phonePosition.transform.position, Quaternion.identity);
-            var activePhoneTransform = DamagePhone(activePhone).transform;
+            ActivePhone = Instantiate(phonePrefab, phonePosition.transform.position, Quaternion.identity);
+            var activePhoneTransform = DamagePhone(ActivePhone).transform;
             activePhoneTransform.parent = phonePosition.transform;
-            
+
             phoneFlipper.ActivePhoneTransform = activePhoneTransform;
             phoneFlipper.enabled = true;
             inventoryScript.ActivePhoneTransform = activePhoneTransform;
