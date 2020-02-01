@@ -50,8 +50,8 @@ public class InventoryScript : MonoBehaviour
             // reset pos
             var t = removedItem.transform;
             t.parent.SetParent(PhoneSelection.Instance.phone, false);
-            t.localPosition = phonePart.originalLocalPosition;
-            t.localRotation = phonePart.originalLocalRotation;
+            t.localPosition = phonePart.OriginalLocalPosition;
+            t.localRotation = phonePart.OriginalLocalRotation;
             phonePart.Assembled = true;
         }
     }
