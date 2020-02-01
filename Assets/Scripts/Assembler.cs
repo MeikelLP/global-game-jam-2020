@@ -10,26 +10,30 @@ public class Assembler : MonoBehaviour
     [SerializeField] private InventoryScript inventory;
     [SerializeField] private new Camera camera;
     [SerializeField] private KeyCode key = KeyCode.Mouse0;
-    [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Color assembleColor = Color.green;
     [SerializeField] private Color disassembleColor = Color.red;
-    [SerializeField] private SVGImage icon;
+    [SerializeField] private SVGImage hoverIcon;
+    [SerializeField] private Image progressIcon;
+    [SerializeField] private float timeToHold = 2;
+    private float _progress;
+    private bool _isReleased;
+    private PhonePart _selected;
 
 
     private void Start()
     {
         if (!camera) throw new ArgumentNullException(nameof(camera));
         if (!inventory) throw new ArgumentNullException(nameof(inventory));
-        if (!text) throw new ArgumentNullException(nameof(text));
 
-        text.text = $"Select (<color=yellow>{key}</color>)";
+        progressIcon.fillAmount = 0;
+        _isReleased = true;
     }
 
     private void LateUpdate()
     {
-        icon.gameObject.SetActive(false);
+        hoverIcon.gameObject.SetActive(false);
         Cursor.visible = true;
-        if (!Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out var hit))
+        if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out var hit))
         {
             // nothing hit
             return;
@@ -43,14 +47,32 @@ public class Assembler : MonoBehaviour
         
         var toolMode = PhoneSelection.Instance.toolMode;
         var color = toolMode == ToolMode.Assemble ? assembleColor : disassembleColor;
+        var iconPosition = camera.WorldToScreenPoint(hit.point);
 
-        icon.gameObject.SetActive(true);
-        icon.color = color;
-        icon.rectTransform.position = camera.WorldToScreenPoint(hit.point);
+        hoverIcon.gameObject.SetActive(true);
+        hoverIcon.color = color;
+        hoverIcon.rectTransform.position = iconPosition;
         Cursor.visible = false;
 
-        if (Input.GetKeyDown(key))
+        if (_selected != part)
         {
+            _progress = 0;
+            _selected = part;
+        }
+        
+        if (Input.GetKeyUp(key))
+        {
+            _isReleased = true;
+            _progress = 0;
+        } else if (Input.GetKey(key) && _isReleased && part == _selected)
+        {
+            progressIcon.rectTransform.position = iconPosition;
+            _progress += Time.deltaTime / timeToHold;
+            _progress = Mathf.Clamp(_progress, 0, 1);
+
+            if (_progress >= 1)
+            {
+        
             switch (toolMode)
             {
                 case ToolMode.Assemble when !part.Assemblable():
@@ -68,6 +90,17 @@ public class Assembler : MonoBehaviour
                     inventory.Add(part);
                     break;
             }
+            progressIcon.fillAmount = _progress;
+            }
+            else
+            {
+                _progress = 0;
+            }
+        }
+        else
+        {
+            _progress = 0;
+        }
         }
     }
 
