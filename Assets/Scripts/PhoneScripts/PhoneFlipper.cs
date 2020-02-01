@@ -3,23 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PhoneFlipper : MonoBehaviour
 {
     [SerializeField] private Vector3 frontRotation;
     [SerializeField] private Vector3 backRotation;
-    [SerializeField] private Transform phone;
     [SerializeField] private TextMeshProUGUI infoText;
     [SerializeField] private KeyCode key = KeyCode.E;
-    private bool IsFront => phone.transform.eulerAngles == frontRotation;
+    private bool IsFront => ActivePhoneTransform.transform.eulerAngles == frontRotation;
+
+    public Transform ActivePhoneTransform  { get; set; }
 
     private void Start()
     {
-        if(!phone) throw new NullReferenceException(nameof(phone));
+        if(!ActivePhoneTransform) throw new NullReferenceException(nameof(ActivePhoneTransform));
         if(!infoText) throw new NullReferenceException(nameof(infoText));
 
-        phone.transform.rotation = Quaternion.Euler(backRotation);
+        ActivePhoneTransform.rotation = Quaternion.Euler(backRotation);
         FlipPhone(); // ensure front always first
         infoText.text = key.ToString();
     }
@@ -35,6 +37,6 @@ public class PhoneFlipper : MonoBehaviour
     private void FlipPhone()
     {
         var newRotation = IsFront ? backRotation : frontRotation;
-        phone.transform.rotation = Quaternion.Euler(newRotation);
+        ActivePhoneTransform.rotation = Quaternion.Euler(newRotation);
     }
 }
