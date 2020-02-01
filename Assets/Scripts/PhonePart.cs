@@ -1,12 +1,9 @@
 using System.Linq;
-using Boo.Lang;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PhonePart : MonoBehaviour
 {
-
-    [FormerlySerializedAs("blockedBy")] public PhonePart[] dependsOn = new PhonePart[0];
+    public PhonePart[] dependsOn = new PhonePart[0];
     public string title;
     public bool broken;
 
@@ -27,5 +24,10 @@ public class PhonePart : MonoBehaviour
         OriginalLocalRotation = t.localRotation;
 
         Assembled = true;
+    }
+
+    private void Reset()
+    {
+        title = gameObject.name;
     }
 }
