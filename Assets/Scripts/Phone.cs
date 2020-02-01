@@ -10,6 +10,7 @@ using UnityEditor;
 public class Phone : MonoBehaviour
 {
     public PhonePart[] parts;
+    public object title;
     public bool IsBroken => parts.Any(x => x.broken);
 
     public IEnumerable<PhonePart> GetDependents(PhonePart part)

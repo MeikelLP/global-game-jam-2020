@@ -31,4 +31,9 @@ public class PhonePart : MonoBehaviour
     {
         title = gameObject.name;
     }
+
+    public override string ToString()
+    {
+        return $"{Phone.title}/{title}";
+    }
 }
