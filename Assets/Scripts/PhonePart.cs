@@ -1,18 +1,22 @@
 using System.Linq;
-using Boo.Lang;
 using UnityEngine;
 
 public class PhonePart : MonoBehaviour
 {
+    public PhonePart[] dependsOn = new PhonePart[0];
+    public string title;
+    public bool broken;
+
     public Vector3 OriginalLocalPosition { get; set; }
     public Quaternion OriginalLocalRotation { get; set; }
 
-    public bool Assembled { get; set; }
+    public bool Disassemblable => dependsOn.All(blockingPart => !blockingPart.Assembled);
 
-    public PhonePart[] blockedBy = new PhonePart[0];
-    public PhonePart[] dependentOf = new PhonePart[0];
-    public string title;
-    
+    public bool Assemblable => !Phone.GetDependents(this).Any(x => x.Assembled);
+
+    public bool Assembled { get; set; }
+    public Phone Phone { get; set; }
+
     private void Start()
     {
         var t = transform;
@@ -22,13 +26,8 @@ public class PhonePart : MonoBehaviour
         Assembled = true;
     }
 
-    public bool Disassemblable()
+    private void Reset()
     {
-        return blockedBy.All(blockingPart => !blockingPart.Assembled);
-    }
-    
-    public bool Assemblable()
-    {
-        return dependentOf.All(dependingPart => dependingPart.Assembled);
+        title = gameObject.name;
     }
 }
