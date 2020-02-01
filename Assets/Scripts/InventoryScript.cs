@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class InventoryScript : MonoBehaviour
 {
-    public float firstItemX = -0.2f;
+    public float firstItemX = 0.1f;
     public float firstItemY = 1f;
-    public float firstItemZ = 1f;
+    public float firstItemZ = 0f;
 
-    public float xPositionChange = 0.2f;
+    public float xPositionChange = -0.05f;
 
     public float scaleFactor = 0.25f;
     
