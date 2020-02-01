@@ -11,6 +11,7 @@ public class Phone : MonoBehaviour
 {
     public PhonePart[] parts;
     public bool AnyBroken => parts.Any(x => x.broken);
+    public string title;
 
     private int _completeNumberOfParts;
     
