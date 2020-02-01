@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class InventoryScript : MonoBehaviour
 {
-    public float xPositionChange = 0.2f;
-    public float yPositionChange = 5.0f;
+    public float firstItemX = -0.2f;
+    public float firstItemY = 1f;
+    public float firstItemZ = 1f;
 
+    public float xPositionChange = 0.2f;
+
+    public float scaleFactor = 0.25f;
+    
     public Inventory inventory = new Inventory();
     public GameObject inventoryGameObject;
 
@@ -20,22 +25,18 @@ public class InventoryScript : MonoBehaviour
         var vector2 = inventory.AddItem(item);
         if (vector2 == null)
         {
+            Destroy(item);
             // inventory full
             Debug.Log("INVENTORY FULL"); // TODO to UI message
             return;
         }
 
+        
         phonePart.Assembled = false;
-
-        var x = vector2.Value.x * xPositionChange;
-        var y = vector2.Value.y * yPositionChange;
-        var z = 1f;
-
-        var position = new Vector3(x, y, z);
-
-        item.transform.parent = inventoryGameObject.transform;
-        item.transform.localPosition = position;
+        item.transform.localScale = CalculateItemScale(item);
+        item.transform.localPosition = CalculateItemPosition(vector2.Value);
         item.transform.localRotation = Quaternion.identity;
+        item.transform.SetParent( inventoryGameObject.transform, false);
     }
 
     public void Remove(PhonePart part)
@@ -53,5 +54,25 @@ public class InventoryScript : MonoBehaviour
             t.localRotation = phonePart.originalLocalRotation;
             phonePart.Assembled = true;
         }
+    }
+
+    private Vector3 CalculateItemPosition(Vector2 vector2)
+    {
+        var x = firstItemX + vector2.x * xPositionChange;
+        var y = firstItemY;
+        var z = firstItemZ;
+        var position = new Vector3(x, y, z);
+        return position;
+    }
+
+    private Vector3 CalculateItemScale(GameObject item)
+    {
+        var parentScale = inventoryGameObject.transform.localScale;
+        var itemScale = item.transform.localScale;
+        var newX = scaleFactor / (parentScale.x * itemScale.x);
+        var newY = scaleFactor / (parentScale.y * itemScale.z);
+        var newZ = scaleFactor / (parentScale.z * itemScale.z);
+        
+        return new Vector3(newX, newY, newZ);
     }
 }

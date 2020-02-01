@@ -3,10 +3,10 @@ using JetBrains.Annotations;
 
 public class Inventory
 {
-    private const int ItemsPerRow = 5;
-    private const int NumberOfRows = 5;
+    private const int ItemsPerRow = 15;
+    public const float PositionY = 1f;
 
-    readonly GameObject[,] _inventoryItems = new GameObject[ItemsPerRow, NumberOfRows];
+    private readonly GameObject[] _inventoryItems = new GameObject[ItemsPerRow];
 
     /// <summary>
     /// Returns the position of the added item.
@@ -16,15 +16,12 @@ public class Inventory
     /// <returns></returns>
     public Vector2? AddItem(GameObject phonePart)
     {
-        for (var y = 0; y < ItemsPerRow; y++)
+        for (var x = 0; x < ItemsPerRow; x++)
         {
-            for (var x = 0; x < NumberOfRows; x++)
+            if (_inventoryItems[x] == null)
             {
-                if (_inventoryItems[x, y] == null)
-                {
-                    _inventoryItems[x, y] = phonePart;
-                    return new Vector2(x, y);
-                }
+                _inventoryItems[x] = phonePart;
+                return new Vector2(x, PositionY);
             }
         }
 
@@ -39,15 +36,12 @@ public class Inventory
     [CanBeNull]
     public GameObject RemoveItem(GameObject phonePart)
     {
-        for (var y = 0; y < ItemsPerRow; y++)
+        for (var x = 0; x < ItemsPerRow; x++)
         {
-            for (var x = 0; x < NumberOfRows; x++)
+            if (_inventoryItems[x] == phonePart)
             {
-                if (_inventoryItems[x, y] == phonePart)
-                {
-                    _inventoryItems[x, y] = null;
-                    return phonePart;
-                }
+                _inventoryItems[x] = null;
+                return phonePart;
             }
         }
         return null;
