@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InventoryScript : MonoBehaviour
@@ -10,42 +11,21 @@ public class InventoryScript : MonoBehaviour
 
     private void Start()
     {
-      inventoryGameObject = GameObject.Find("Inventory");
+        if (!inventoryGameObject) throw new NullReferenceException(nameof(inventoryGameObject));
     }
 
-    void Update()
-    {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     Debug.Log("Left mouse clicked");
-        //     AddItemToInventory(null);
-        // }
-        //
-        // if (Input.GetMouseButtonDown(1))
-        // {
-        //     Debug.Log("Right mouse clicked");
-        //     Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
-        //
-        //     if( Physics.Raycast( ray, out var hit, 100 ) )
-        //     {
-        //         if (hit.transform.gameObject.TryGetComponent<PhonePart>(out var _))
-        //         {
-        //             RemoveItemFromInventory(hit.transform.gameObject);
-        //         }
-        //     }
-        // }
-    }
-
-    public void AddItemToInventory(PhonePart phonePart)
+    public void Add(PhonePart phonePart)
     {
         var item = phonePart.gameObject;
         var vector2 = inventory.AddItem(item);
         if (vector2 == null)
         {
-            Destroy(item);
             // inventory full
+            Debug.Log("INVENTORY FULL"); // TODO to UI message
             return;
         }
+
+        phonePart.Assembled = false;
 
         var x = vector2.Value.x * xPositionChange;
         var y = vector2.Value.y * yPositionChange;
@@ -58,12 +38,20 @@ public class InventoryScript : MonoBehaviour
         item.transform.localRotation = Quaternion.identity;
     }
 
-    private void RemoveItemFromInventory(GameObject o)
+    public void Remove(PhonePart part)
     {
-        GameObject removedItem = inventory.RemoveItem(o);
+        var removedItem = inventory.RemoveItem(part.gameObject);
         if (removedItem)
         {
-            Destroy(removedItem);
+            // ReSharper disable once PossibleNullReferenceException
+            var phonePart = removedItem.GetComponent<PhonePart>();
+
+            // reset pos
+            var t = removedItem.transform;
+            t.parent.SetParent(PhoneSelection.Instance.phone, false);
+            t.localPosition = phonePart.originalLocalPosition;
+            t.localRotation = phonePart.originalLocalRotation;
+            phonePart.Assembled = true;
         }
     }
 }
