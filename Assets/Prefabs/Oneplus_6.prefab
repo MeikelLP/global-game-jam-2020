@@ -93,8 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a317c4f87c8d4d0e8d4b1bd378e2e438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalLocalPosition: {x: 0, y: 0, z: 0}
-  originalLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  blockedBy:
+  - {fileID: 1518687525694783578}
+  dependentOf: []
+  title: CameraBump
 --- !u!64 &7420414136597301505
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -202,8 +204,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a317c4f87c8d4d0e8d4b1bd378e2e438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalLocalPosition: {x: 0, y: 0, z: 0}
-  originalLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  blockedBy:
+  - {fileID: 7059095903963323281}
+  dependentOf:
+  - {fileID: 7703488912878220825}
+  title: Body
 --- !u!64 &6712288120531461027
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -345,8 +350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a317c4f87c8d4d0e8d4b1bd378e2e438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalLocalPosition: {x: 0, y: 0, z: 0}
-  originalLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  blockedBy: []
+  dependentOf:
+  - {fileID: 7059095903963323281}
+  title: Screen
 --- !u!64 &8106263506356311501
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -454,8 +461,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a317c4f87c8d4d0e8d4b1bd378e2e438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalLocalPosition: {x: 0, y: 0, z: 0}
-  originalLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  blockedBy:
+  - {fileID: 5345505875889341106}
+  dependentOf:
+  - {fileID: 1518687525694783578}
+  title: Lid
 --- !u!64 &6424641725610323721
 MeshCollider:
   m_ObjectHideFlags: 0
