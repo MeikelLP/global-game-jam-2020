@@ -1,10 +1,15 @@
 using System;
 using UnityEngine;
 
-namespace UnityTemplateProjects
+public class PhonePart : MonoBehaviour
 {
-    public class PhonePart : MonoBehaviour
+    public Vector3 originalLocalPosition;
+    public Quaternion originalLocalRotation;
+
+    private void Start()
     {
-        private string name;
+        var t = transform;
+        originalLocalPosition = t.localPosition;
+        originalLocalRotation = t.localRotation;
     }
 }
