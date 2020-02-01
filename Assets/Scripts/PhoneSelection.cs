@@ -22,18 +22,12 @@ public class PhoneSelection : MonoBehaviour
         if(!toolModeText) throw new ArgumentNullException(nameof(toolModeText));
 
         toolMode = ToolMode.Disassemble;
-        ChangeUI();
+        toolModeText.text = key.ToString();
     }
 
     private void SwapState()
     {
         toolMode = toolMode == ToolMode.Assemble ? ToolMode.Disassemble : ToolMode.Assemble;
-        ChangeUI();
-    }
-
-    private void ChangeUI()
-    {
-        toolModeText.text = $"{toolMode} (<color=yellow>{key}</color>)";
     }
 
     // Update is called once per frame

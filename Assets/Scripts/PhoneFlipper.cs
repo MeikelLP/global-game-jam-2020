@@ -21,6 +21,7 @@ public class PhoneFlipper : MonoBehaviour
 
         phone.transform.rotation = Quaternion.Euler(backRotation);
         FlipPhone(); // ensure front always first
+        infoText.text = key.ToString();
     }
 
     private void Update()
@@ -35,6 +36,5 @@ public class PhoneFlipper : MonoBehaviour
     {
         var newRotation = IsFront ? backRotation : frontRotation;
         phone.transform.rotation = Quaternion.Euler(newRotation);
-        infoText.text = $"{(IsFront ? "Front" : "Back")} (<color=yellow>{key}</color>)";
     }
 }

@@ -13,26 +13,18 @@ public class CinemachineAdditionals : MonoBehaviour
 
     [SerializeField] private CinemachineFollowZoom zoom;
     [SerializeField] private CinemachineVirtualCamera cam;
-    [SerializeField] private TextMeshProUGUI rotateText;
-    [SerializeField] private TextMeshProUGUI zoomText;
 
     private CinemachineOrbitalTransposer _transposer;
 
     private void Start()
     {
-        if (!rotateText) throw new ArgumentNullException(nameof(rotateText));
-        if (!zoomText) throw new ArgumentNullException(nameof(rotateText));
-        if (!zoom) throw new ArgumentNullException(nameof(rotateText));
+        if (!zoom) throw new ArgumentNullException(nameof(zoom));
+        if (!cam) throw new ArgumentNullException(nameof(cam));
 
         _transposer = cam.GetCinemachineComponent<CinemachineOrbitalTransposer>();
-        zoom = cam.GetComponent<CinemachineFollowZoom>();
-
 
         _transposer.m_XAxis.m_InputAxisName = "";
         _transposer.m_XAxis.m_InputAxisValue = 0;
-
-        rotateText.text = $"Rotate (<color=yellow>{rotateKey}</color>)";
-        zoomText.text = $"Zoom (<color=yellow>{zoomKey}</color>)";
     }
 
     private void Update()
