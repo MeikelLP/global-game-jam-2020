@@ -33,7 +33,7 @@ public class Assembler : MonoBehaviour
     {
         hoverIcon.gameObject.SetActive(false);
         Cursor.visible = true;
-        if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out var hit))
+        if (!Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out var hit))
         {
             _progress = 0;
             // nothing hit
@@ -91,10 +91,10 @@ public class Assembler : MonoBehaviour
                         inventory.Add(part);
                         break;
                 }
-
-                progressIcon.fillAmount = _progress;
             }
         }
+        
+        progressIcon.fillAmount = _progress;
     }
 
     private void OnDestroy()
