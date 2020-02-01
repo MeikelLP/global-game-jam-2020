@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = System.Random;
@@ -37,13 +38,24 @@ namespace PhoneScripts
 
             // Instantiate at position (0, 0, 0) and zero rotation.
             var activePhone = Instantiate(phonePrefab, phonePosition.transform.position, Quaternion.identity);
-            var activePhoneTransform = activePhone.transform;
+            var activePhoneTransform = DamagePhone(activePhone).transform;
             activePhoneTransform.parent = phonePosition.transform;
             
             phoneFlipper.ActivePhoneTransform = activePhoneTransform;
             phoneFlipper.enabled = true;
             inventoryScript.ActivePhoneTransform = activePhoneTransform;
             inventoryScript.enabled = true;
+        }
+
+        private Phone DamagePhone(Phone phone)
+        {
+            foreach (var phonePart in phone.parts)
+            {
+                var r = _random.Next(1);
+                phonePart.broken = r > 0;
+            }
+
+            return phone;
         }
     }
 }
