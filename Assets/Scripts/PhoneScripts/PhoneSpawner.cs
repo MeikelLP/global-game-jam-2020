@@ -18,8 +18,8 @@ namespace PhoneScripts
         // scripts that need the phone
         public PhoneFlipper phoneFlipper;
         public InventoryScript inventoryScript;
-        public DebugView debugView;
-      
+
+        public int percentageDamaged = 25;
 
         // will be initialized from bootstrapper at runtime
         public void Initialize()
@@ -28,7 +28,6 @@ namespace PhoneScripts
             if (!phonePosition) throw new NullReferenceException(nameof(phonePosition));
             if (!phoneFlipper) throw new NullReferenceException(nameof(phoneFlipper));
             if (!inventoryScript) throw new NullReferenceException(nameof(inventoryScript));
-            if (!debugView) throw new NullReferenceException(nameof(debugView));
             if (phonePrefabs.Length == 0)
             {
                 throw new InvalidOperationException("At least one phone prefab must be assigned");
@@ -48,7 +47,7 @@ namespace PhoneScripts
 
         public void Spawn()
         {
-            var phonePrefabIndex = _random.Next(phonePrefabs.Length - 1);
+            var phonePrefabIndex = _random.Next(phonePrefabs.Length);
             var phonePrefab = phonePrefabs[phonePrefabIndex];
 
             // Instantiate at position (0, 0, 0) and zero rotation.
@@ -58,18 +57,22 @@ namespace PhoneScripts
             ActivePhone.Initialize();
 
             phoneFlipper.ActivePhoneTransform = activePhoneTransform;
-            phoneFlipper.enabled = true;
+            phoneFlipper.Refresh();
             inventoryScript.ActivePhoneTransform = activePhoneTransform;
             inventoryScript.enabled = true;
-            debugView.Refresh(ActivePhone);
         }
 
         private Phone DamagePhone(Phone phone)
         {
             foreach (var phonePart in phone.parts)
             {
-                var r = _random.Next(2);
-                phonePart.broken = r > 0;
+                if (phonePart.name.Contains("screw"))
+                {
+                    continue;
+                }
+
+                var r = _random.Next(100);
+                phonePart.broken = r < percentageDamaged;
             }
 
             return phone;

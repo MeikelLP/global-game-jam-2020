@@ -286,6 +286,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2530271896341438703, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1409969009}
+    - target: {fileID: 4144348879340174616, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144348880672383042, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144348880672383042, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144348881015225046, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144348881015225046, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144348881015225046, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5083121523492537831, guid: d03739f42196ea94cb888cc7b45f7030,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -316,11 +351,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5083121523798706568, guid: d03739f42196ea94cb888cc7b45f7030,
-        type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1409969009}
     - target: {fileID: 5083121523798706569, guid: d03739f42196ea94cb888cc7b45f7030,
         type: 3}
       propertyPath: inventoryGameObject
@@ -398,9 +428,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5083121523798706581, guid: d03739f42196ea94cb888cc7b45f7030,
         type: 3}
+      propertyPath: phonePrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083121523798706581, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
       propertyPath: phonePosition
       value: 
       objectReference: {fileID: 1679658747}
+    - target: {fileID: 5083121523798706581, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: phonePrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7388561681927998001, guid: c6c82d433b79f8e4f939daaf179a7592,
+        type: 3}
     - target: {fileID: 5083121523904888341, guid: d03739f42196ea94cb888cc7b45f7030,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -521,6 +562,21 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6193029186795067073, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1409969009}
+    - target: {fileID: 7296421116851775470, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1409969009}
+    - target: {fileID: 9026243217578541236, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1409969009}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d03739f42196ea94cb888cc7b45f7030, type: 3}
 --- !u!1001 &7528975097421654615
@@ -530,6 +586,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7528975095566155611, guid: 67bbf0c9f1ae2104480eb10e612c84cb,
+        type: 3}
+      propertyPath: m_Width
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7528975095566155613, guid: 67bbf0c9f1ae2104480eb10e612c84cb,
         type: 3}
       propertyPath: m_LookAt
@@ -540,6 +601,11 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1679658748}
+    - target: {fileID: 7528975096012996902, guid: 67bbf0c9f1ae2104480eb10e612c84cb,
+        type: 3}
+      propertyPath: field of view
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7528975097073615729, guid: 67bbf0c9f1ae2104480eb10e612c84cb,
         type: 3}
       propertyPath: m_LocalPosition.x

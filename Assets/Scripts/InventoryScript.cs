@@ -1,81 +1,62 @@
 using System;
-using PhoneScripts;
+using TMPro;
+using Tools;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryScript : MonoBehaviour
 {
-    public float firstItemX = 0.1f;
-    public float firstItemY = 1f;
-    public float firstItemZ = 0f;
-
-    public float xPositionChange = -0.05f;
-
-    public float scaleFactor = 0.25f;
-    
-    public Inventory inventory = new Inventory();
     public GameObject inventoryGameObject;
+    public GameObject inventoryItemPrefab;
+    public Transform container;
 
-    public Transform ActivePhoneTransform  { get; set; }
-    
+    public Transform ActivePhoneTransform { get; set; }
+
+    private CameraItemRenderer _renderer;
+
     private void Start()
     {
         if (!inventoryGameObject) throw new NullReferenceException(nameof(inventoryGameObject));
+
+        _renderer = FindObjectOfType<CameraItemRenderer>();
+
+        if (!_renderer) throw new ArgumentNullException(nameof(_renderer));
     }
 
     public void Add(PhonePart phonePart)
     {
-        var item = phonePart.gameObject;
-        var vector2 = inventory.AddItem(item);
-        if (vector2 == null)
+        phonePart.Assembled = false;
+        phonePart.gameObject.SetActive(false);
+        if (!_renderer.Images.TryGetValue(phonePart.ToString(), out var texture))
         {
-            Destroy(item);
-            // inventory full
-            Debug.Log("INVENTORY FULL"); // TODO to UI message
-            return;
+            throw new Exception($"No image found for: {phonePart}");
         }
 
-        phonePart.Assembled = false;
-        item.transform.localScale = CalculateItemScale(item);
-        item.transform.localPosition = CalculateItemPosition(vector2.Value);
-        item.transform.localRotation = Quaternion.identity;
-        item.transform.SetParent( inventoryGameObject.transform, false);
+        var invItem = Instantiate(inventoryItemPrefab, container);
+        invItem.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
+            new Vector2(0.5f, 0.5f));
+        invItem.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = phonePart.ToString();
+        invItem.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            // ReSharper disable once Unity.NoNullPropagation
+            if (Toolbar.Instance.activeTool?.GetType() == typeof(Dissassembler))
+            {
+                if (phonePart.Assemblable)
+                {
+                    Remove(phonePart);
+                    Destroy(invItem);
+                }
+                else
+                {
+                    Debug.Log("Phone part requires others to be installed first.");
+                }
+            }
+        });
     }
 
     public void Remove(PhonePart part)
     {
-        var removedItem = inventory.RemoveItem(part.gameObject);
-        if (removedItem)
-        {
-            // ReSharper disable once PossibleNullReferenceException
-            var phonePart = removedItem.GetComponent<PhonePart>();
-
-            // reset pos
-            var removedItemTransform = removedItem.transform;
-            removedItemTransform.SetParent(ActivePhoneTransform, false);
-            removedItemTransform.localPosition = phonePart.OriginalLocalPosition;
-            removedItemTransform.localRotation = phonePart.OriginalLocalRotation;
-            removedItemTransform.localScale = phonePart.OriginalLocalScale;
-            phonePart.Assembled = true;
-        }
-    }
-
-    private Vector3 CalculateItemPosition(Vector2 vector2)
-    {
-        var x = firstItemX + vector2.x * xPositionChange;
-        var y = firstItemY;
-        var z = firstItemZ;
-        var position = new Vector3(x, y, z);
-        return position;
-    }
-
-    private Vector3 CalculateItemScale(GameObject item)
-    {
-        var parentScale = inventoryGameObject.transform.localScale;
-        var itemScale = item.transform.localScale;
-        var newX = scaleFactor / (parentScale.x * itemScale.x);
-        var newY = scaleFactor / (parentScale.y * itemScale.z);
-        var newZ = scaleFactor / (parentScale.z * itemScale.z);
-        
-        return new Vector3(newX, newY, newZ);
+        part.Assembled = true;
+        part.gameObject.SetActive(true);
     }
 }

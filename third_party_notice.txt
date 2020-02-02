@@ -1,0 +1,11 @@
+Icons:
+
+All the following icons are licensed under CC BY 3.0 which can be found at https://creativecommons.org/licenses/by/3.0/legalcode.
+The icons were all acquired via https://www.game-icons.net
+
+Cancel: sbed (https://opengameart.org/content/95-game-icons)
+Confirmed: Delapouite (https://delapouite.com/)
+Magnifying Glass (edited): Lorc (http://lorcblog.blogspot.com/)
+Mouse_Complete, Mouse_Left, Mouse_Right, Mouse_Wheel: Delapouite (https://delapouite.com/)
+Repair: Lorc (http://lorcblog.blogspot.com/)
+Screwdriver: Lorc (http://lorcblog.blogspot.com/)
