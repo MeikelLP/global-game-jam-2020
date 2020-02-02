@@ -60,11 +60,12 @@ public class InventoryScript : MonoBehaviour
             {
                 if (phonePart.Assembled)
                 {
-                    Debug.Log("Assembled items can not be repaired");
+                    UserFeedback.Instance.ShowInfoMessage("Assembled items can not be repaired");
                 }
                 else
                 {
                     phonePart.broken = false;
+                    invItem.transform.Find("Indicator").gameObject.SetActive(false);
                 }
             }
         });
