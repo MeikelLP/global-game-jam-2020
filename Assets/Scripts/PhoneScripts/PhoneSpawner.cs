@@ -21,6 +21,8 @@ namespace PhoneScripts
         public InventoryScript inventoryScript;
         public DebugView debugView;
 
+        public int percentageDamaged = 25;
+
         // will be initialized from bootstrapper at runtime
         public void Initialize()
         {
@@ -72,8 +74,9 @@ namespace PhoneScripts
                 {
                     continue;
                 }
-                var r = _random.Next(2);
-                phonePart.broken = r > 0;
+                
+                var r = _random.Next(100);
+                phonePart.broken = r < 25;
             }
 
             return phone;
