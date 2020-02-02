@@ -19,12 +19,11 @@ namespace GameScripts
             {
                 return;
             }
-            Debug.Log("The phone is repaired, spawning new phone");
+            UserFeedback.Instance.ShowInfoMessage("The phone is repaired, spawning new phone");
             
             // despawn old phone
             // TODO award money
             // TODO increase timer
-            // TODO show message about finished phone
             Destroy(phone.gameObject);
             
             phoneSpawner.Spawn();

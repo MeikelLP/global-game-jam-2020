@@ -8,8 +8,7 @@ namespace Tools
         {
             if (part.Assembled)
             {
-                Debug.Log("Assembled items can not be repaired");
-                // TODO show ui message
+                UserFeedback.Instance.ShowInfoMessage("Assembled items can not be repaired");
             }
             else
             {
