@@ -45,7 +45,7 @@ public class InventoryScript : MonoBehaviour
             // ReSharper disable once Unity.NoNullPropagation
             if (Toolbar.Instance.activeTool?.GetType() == typeof(Assembler))
             {
-                if (phonePart.Assemblable)
+                if (phonePart.Assemblable && !phonePart.broken)
                 {
                     Remove(phonePart);
                     Destroy(invItem);
