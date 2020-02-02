@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Tools
 {
-    public class Assembler : Tool
+    public class Assembler : MonoBehaviour
     {
         [SerializeField] private InventoryScript inventory;
         [SerializeField] private DebugView debugView;
@@ -92,6 +92,13 @@ namespace Tools
                                     inventory.Add(part);
                                     part.Phone.RemovePart(part);
                                     debugView.Refresh(part.Phone);
+                                    break;
+                                case ToolMode.Repair when part.Assembled:
+                                    Debug.Log("Assembled items can not be repaired");
+                                    // TODO show ui message
+                                    break;
+                                case ToolMode.Repair:
+                                    part.broken = false;
                                     break;
                             }
                         }
