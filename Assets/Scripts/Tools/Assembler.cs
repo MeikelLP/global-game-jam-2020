@@ -19,16 +19,20 @@ namespace Tools
 
         protected override void OnInteract(PhonePart part)
         {
+            if (part.Assembled)
+            { 
+                Debug.Log("Part already assembled");
+                return;
+            }
             if (!part.Assemblable)
             {
-                Debug.Log("Item can not be assembled");
+                Debug.Log("Item is not be assemblable");
+                return;
             }
-            else
-            {
-                inventory.Remove(part);
-                part.Phone.AddPart(part);
-                gameState.CheckPhone(part.Phone);
-            }
+            
+            inventory.Remove(part);
+            part.Phone.AddPart(part);
+            gameState.CheckPhone(part.Phone);
         }
     }
 }

@@ -19,6 +19,8 @@ namespace PhoneScripts
         public PhoneFlipper phoneFlipper;
         public InventoryScript inventoryScript;
 
+        public int percentageDamaged = 25;
+
         // will be initialized from bootstrapper at runtime
         public void Initialize()
         {
@@ -55,7 +57,7 @@ namespace PhoneScripts
             ActivePhone.Initialize();
 
             phoneFlipper.ActivePhoneTransform = activePhoneTransform;
-            phoneFlipper.enabled = true;
+            phoneFlipper.Refresh();
             inventoryScript.ActivePhoneTransform = activePhoneTransform;
             inventoryScript.enabled = true;
         }
@@ -68,8 +70,9 @@ namespace PhoneScripts
                 {
                     continue;
                 }
-                var r = _random.Next(2);
-                phonePart.broken = r > 0;
+                
+                var r = _random.Next(100);
+                phonePart.broken = r < percentageDamaged;
             }
 
             return phone;
