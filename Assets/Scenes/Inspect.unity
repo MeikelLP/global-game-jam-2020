@@ -316,11 +316,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5083121523798706568, guid: d03739f42196ea94cb888cc7b45f7030,
-        type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1409969009}
     - target: {fileID: 5083121523798706569, guid: d03739f42196ea94cb888cc7b45f7030,
         type: 3}
       propertyPath: inventoryGameObject
@@ -521,8 +516,158 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6193029186795067073, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1409969009}
+    - target: {fileID: 7296421116851775470, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1409969009}
+    - target: {fileID: 7296421116851775470, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: progressIcon
+      value: 
+      objectReference: {fileID: 5083121523291440297}
+    - target: {fileID: 7296421116851775470, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 5083121523291440298}
+    - target: {fileID: 7296421116851775470, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: gameState
+      value: 
+      objectReference: {fileID: 5083121523291440293}
+    - target: {fileID: 7296421116851775470, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: hoverIcon
+      value: 
+      objectReference: {fileID: 5083121523291440296}
+    - target: {fileID: 9026243217578541236, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1409969009}
+    - target: {fileID: 9026243217578541236, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: brokenMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: de9275544beb7e94a973e58ae78636c3, type: 2}
+    - target: {fileID: 9026243217578541236, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: dissasemblableMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: e7707a00d5a27b34092f623c8228f9bc, type: 2}
+    - target: {fileID: 9026243217578541236, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: progressIcon
+      value: 
+      objectReference: {fileID: 5083121523291440297}
+    - target: {fileID: 9026243217578541236, guid: d03739f42196ea94cb888cc7b45f7030,
+        type: 3}
+      propertyPath: hoverIcon
+      value: 
+      objectReference: {fileID: 5083121523291440294}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d03739f42196ea94cb888cc7b45f7030, type: 3}
+--- !u!114 &5083121523291440293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5083121523798706583, guid: d03739f42196ea94cb888cc7b45f7030,
+    type: 3}
+  m_PrefabInstance: {fileID: 5083121523291440292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ba9006610a4523a1bcec25249c05fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5083121523291440294 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2278821665119108675, guid: d03739f42196ea94cb888cc7b45f7030,
+    type: 3}
+  m_PrefabInstance: {fileID: 5083121523291440292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5083121523291440295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5130034408765751370, guid: d03739f42196ea94cb888cc7b45f7030,
+    type: 3}
+  m_PrefabInstance: {fileID: 5083121523291440292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5083121523291440296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1720952496177534970, guid: d03739f42196ea94cb888cc7b45f7030,
+    type: 3}
+  m_PrefabInstance: {fileID: 5083121523291440292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5083121523291440297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5083121523392908558, guid: d03739f42196ea94cb888cc7b45f7030,
+    type: 3}
+  m_PrefabInstance: {fileID: 5083121523291440292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5083121523291440298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5083121523798706569, guid: d03739f42196ea94cb888cc7b45f7030,
+    type: 3}
+  m_PrefabInstance: {fileID: 5083121523291440292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5363205219c742068c76febb62364e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5083121523291440299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7854856613444603137, guid: d03739f42196ea94cb888cc7b45f7030,
+    type: 3}
+  m_PrefabInstance: {fileID: 5083121523291440292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5083121523291440300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083121523291440299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d3cc3ee6814abfaef2ddc3ec303820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToHold: 0.5
+  key: 323
+  camera: {fileID: 1409969009}
+  hoverIcon: {fileID: 5083121523291440295}
+  progressIcon: {fileID: 5083121523291440297}
 --- !u!1001 &7528975097421654615
 PrefabInstance:
   m_ObjectHideFlags: 0
