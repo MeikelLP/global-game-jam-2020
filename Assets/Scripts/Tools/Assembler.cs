@@ -29,7 +29,12 @@ namespace Tools
                 UserFeedback.Instance.ShowInfoMessage("Part already assembled");
                 return;
             }
-            
+
+            Assemble(part);
+        }
+
+        public void Assemble(PhonePart part)
+        {
             inventory.Remove(part);
             part.Phone.AddPart(part);
             gameState.CheckPhone(part.Phone);
