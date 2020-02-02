@@ -19,6 +19,7 @@ namespace GameScripts
             {
                 return;
             }
+            Debug.Log("The phone is repaired, spawning new phone");
             
             // despawn old phone
             // TODO award money

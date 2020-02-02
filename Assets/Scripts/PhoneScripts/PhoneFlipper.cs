@@ -21,11 +21,9 @@ public class PhoneFlipper : MonoBehaviour
         if(!ActivePhoneTransform) throw new NullReferenceException(nameof(ActivePhoneTransform));
         if(!infoText) throw new NullReferenceException(nameof(infoText));
 
-        ActivePhoneTransform.rotation = Quaternion.Euler(backRotation);
-        FlipPhone(); // ensure front always first
         infoText.text = key.ToString();
     }
-
+    
     private void Update()
     {
         if (Input.GetKeyDown(key))
@@ -38,5 +36,12 @@ public class PhoneFlipper : MonoBehaviour
     {
         var newRotation = IsFront ? backRotation : frontRotation;
         ActivePhoneTransform.rotation = Quaternion.Euler(newRotation);
+    }
+
+    public void Refresh()
+    {
+        this.enabled = true;
+        ActivePhoneTransform.rotation = Quaternion.Euler(backRotation);
+        FlipPhone();
     }
 }
