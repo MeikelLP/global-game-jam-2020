@@ -2,12 +2,12 @@ using System;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Toolbar : MonoBehaviour
 {
     public static Toolbar Instance { get; private set; }
 
+    [SerializeField] private Tool[] tools;
     [SerializeField] private TextMeshProUGUI toolModeText;
     [HideInInspector] public ToolMode toolMode;
     [SerializeField] private KeyCode key = KeyCode.S;
@@ -17,7 +17,7 @@ public class Toolbar : MonoBehaviour
         if (Instance != null) Destroy(this);
         Instance = this;
 
-        if(!toolModeText) throw new ArgumentNullException(nameof(toolModeText));
+        if (!toolModeText) throw new ArgumentNullException(nameof(toolModeText));
 
         toolMode = ToolMode.Disassemble;
         toolModeText.text = key.ToString();
