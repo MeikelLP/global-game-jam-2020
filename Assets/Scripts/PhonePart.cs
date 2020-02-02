@@ -9,10 +9,11 @@ public class PhonePart : MonoBehaviour
 
     public Vector3 OriginalLocalPosition { get; set; }
     public Quaternion OriginalLocalRotation { get; set; }
+    public Vector3 OriginalLocalScale { get; set; }
 
     public bool Disassemblable => dependsOn.All(blockingPart => !blockingPart.Assembled);
 
-    public bool Assemblable => !Phone.GetDependents(this).Any(x => x.Assembled);
+    public bool Assemblable => Phone.GetDependents(this).All(x => x.Assembled);
 
     public bool Assembled { get; set; }
     public Phone Phone { get; set; }
@@ -22,6 +23,7 @@ public class PhonePart : MonoBehaviour
         var t = transform;
         OriginalLocalPosition = t.localPosition;
         OriginalLocalRotation = t.localRotation;
+        OriginalLocalScale = t.localScale;
 
         Assembled = true;
     }

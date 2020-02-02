@@ -24,7 +24,8 @@ public class Assembler : MonoBehaviour
     {
         if (!camera) throw new ArgumentNullException(nameof(camera));
         if (!inventory) throw new ArgumentNullException(nameof(inventory));
-
+        if (!gameState) throw new ArgumentNullException(nameof(gameState));
+        
         progressIcon.fillAmount = 0;
         _isReleased = true;
     }

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 566742319}
   - component: {fileID: 566742320}
   - component: {fileID: 566742321}
+  - component: {fileID: 566742322}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -721,6 +722,7 @@ MonoBehaviour:
   hoverIcon: {fileID: 1099717973}
   progressIcon: {fileID: 102222250}
   timeToHold: 0.5
+  gameState: {fileID: 566742322}
 --- !u!114 &566742317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,6 +805,19 @@ MonoBehaviour:
   - {fileID: 1287640595, guid: 1f32dffbd8ec2244ca2c230b33a9c21d, type: 3}
   phoneFlipper: {fileID: 566742315}
   inventoryScript: {fileID: 566742317}
+--- !u!114 &566742322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566742312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ba9006610a4523a1bcec25249c05fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phoneSpawner: {fileID: 566742321}
 --- !u!1 &623457257
 GameObject:
   m_ObjectHideFlags: 0
