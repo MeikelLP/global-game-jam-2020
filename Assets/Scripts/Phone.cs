@@ -10,9 +10,11 @@ using UnityEditor;
 public class Phone : MonoBehaviour
 {
     public PhonePart[] parts;
+    public bool AnyBroken => parts.Any(x => x.broken);
     public string title;
-    public bool IsBroken => parts.Any(x => x.broken);
 
+    private int _completeNumberOfParts;
+    
     public IEnumerable<PhonePart> GetDependents(PhonePart part)
     {
         return parts.Where(x => x.dependsOn.Contains(part));
@@ -20,10 +22,41 @@ public class Phone : MonoBehaviour
 
     private void Start()
     {
+        _completeNumberOfParts = parts.Length;
         foreach (var part in parts)
         {
             part.Phone = this;
         }
+    }
+
+    public void RemovePart(PhonePart toRemove)
+    {
+        var currentNumberOfParts = parts.Length;
+        for (int i = 0; i < currentNumberOfParts; i++)
+        {
+            if (parts[i] == toRemove)
+            {
+                // switch the last element with the current
+                parts[i] = parts[currentNumberOfParts - 1];
+                return;
+            }
+        }
+    }
+    
+    public void AddPart(PhonePart toAdd)
+    {
+        // TODO do unique check
+        // TODO do out of bounds check
+        parts[parts.Length] = toAdd;
+    }
+
+    /// <summary>
+    /// The phone must be complete and no part can be broken 
+    /// </summary>
+    /// <returns></returns>
+    public bool IsRepaired()
+    {
+        return _completeNumberOfParts == parts.Length && AnyBroken;
     }
 }
 
@@ -37,14 +70,14 @@ public class PhoneEditor : Editor
         var phone = (Phone) target;
         if (GUILayout.Button("Break Phone"))
         {
-            if (phone.IsBroken) return;
+            if (phone.AnyBroken) return;
             var part = phone.parts[Random.Range(0, phone.parts.Length)];
             part.broken = true;
         }
 
         if (GUILayout.Button("Repair Phone"))
         {
-            if (!phone.IsBroken) return;
+            if (!phone.AnyBroken) return;
             foreach (var part in phone.parts)
             {
                 part.broken = false;
