@@ -48,7 +48,7 @@ public class InventoryScript : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Phone part requires others to be installed first.");
+                    UserFeedback.Instance.ShowInfoMessage("Phone part requires others to be installed first.");
                 }
             }
         });
