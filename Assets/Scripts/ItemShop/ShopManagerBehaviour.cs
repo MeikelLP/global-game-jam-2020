@@ -4,12 +4,25 @@ using UnityEngine;
 public class ShopManagerBehaviour : MonoBehaviour
 {
     public BankAccountBehaviour account;
-    public GameObject contentPage;
     public ItemShopBehaviour shop;
     [HideInInspector] public List<PhonePart> phoneComponentList;
-
     private InventoryScript _inventory;
-
+    public KeyCode _open;
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(_open))
+        {
+            if (shop.gameObject.activeSelf)
+            {
+                shop.gameObject.SetActive(false);
+            }
+            else
+            {
+                shop.gameObject.SetActive(true);
+            }
+        }
+    }
     public bool IsListFilled { get; private set; }
 
     private void FillComponentList(Phone phone)
@@ -45,6 +58,7 @@ public class ShopManagerBehaviour : MonoBehaviour
 
     public void Initialize(Phone phone)
     {
+        shop.gameObject.SetActive(false);
         phoneComponentList = new List<PhonePart>();
         FillComponentList(phone);
         shop.Initialize(phone);
