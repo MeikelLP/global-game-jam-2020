@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderTexture: {fileID: 8400000, guid: ad26ceabacf8f9544a29dd37bcc89862, type: 2}
   positionAnchor: {fileID: 1645907945}
+  rendered: 0
 --- !u!114 &226731150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -894,6 +895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderTexture: {fileID: 8400000, guid: ad26ceabacf8f9544a29dd37bcc89862, type: 2}
   positionAnchor: {fileID: 0}
+  rendered: 0
 --- !u!114 &1308426268
 MonoBehaviour:
   m_ObjectHideFlags: 0

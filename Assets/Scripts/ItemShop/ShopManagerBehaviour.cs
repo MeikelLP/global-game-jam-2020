@@ -53,7 +53,7 @@ public class ShopManagerBehaviour : MonoBehaviour
     {
         phoneComponentList = new List<PhonePart>();
         FillComponentList(phone);
-        shop.Initzialize(phone);
+        shop.Initialize(phone);
     }
     
 }

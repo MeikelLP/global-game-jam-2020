@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using PhoneScripts;
 using UnityEngine;
@@ -30,9 +31,15 @@ public class ItemShopBehaviour : MonoBehaviour
         renderer = FindObjectOfType<CameraItemRenderer>();
     }
 
-    public void Initzialize(Phone phone)
+    public void Initialize(Phone phone)
     {
-        StartCoroutine(renderer.StartRendering(phone));
+        //StartCoroutine(renderer.StartRendering(phone));
+        StartCoroutine(WaitForRendering(phone));
+    }
+
+    private IEnumerator WaitForRendering(Phone phone)
+    {
+        yield return new WaitUntil(() => renderer.rendered);
         FillShop(phone);
     }
 
@@ -55,20 +62,16 @@ public class ItemShopBehaviour : MonoBehaviour
 
     private void FillShop(Phone phone)
     {
-        Debug.Log(shopManager.phoneComponentList.Count);
         foreach (var phonePart in phone.parts)
         {
             GameObject newButton = Instantiate(button,Vector3.zero,Quaternion.identity,contentPage.transform);
             newButton.GetComponent<Button>().onClick.AddListener((() => shopManager.BuyComponent(phonePart)));
             Texture2D tex2d;
-            if (renderer.Images.TryGetValue(phonePart.ToString(), out tex2d))
+            if (!renderer.Images.TryGetValue(phonePart.ToString(), out tex2d) || !tex2d)
             {
-                newButton.GetComponent<Image>().sprite = Sprite.Create(tex2d,new Rect(0,0,tex2d.width,tex2d.height),new Vector2(tex2d.width/2,tex2d.height/2) );
+                throw new Exception();
             }
-            else
-            {
-                Debug.Log("Phone Component " + phonePart.ToString() + " not rendered!");
-            }
+            newButton.GetComponent<Image>().sprite = Sprite.Create(tex2d,new Rect(0,0,tex2d.width,tex2d.height),new Vector2(tex2d.width/2,tex2d.height/2) );
         }
     }
 }
