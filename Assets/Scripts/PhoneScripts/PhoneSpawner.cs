@@ -48,7 +48,7 @@ namespace PhoneScripts
 
         public void Spawn()
         {
-            var phonePrefabIndex = _random.Next(phonePrefabs.Length - 1);
+            var phonePrefabIndex = _random.Next(phonePrefabs.Length);
             var phonePrefab = phonePrefabs[phonePrefabIndex];
 
             // Instantiate at position (0, 0, 0) and zero rotation.
@@ -68,6 +68,10 @@ namespace PhoneScripts
         {
             foreach (var phonePart in phone.parts)
             {
+                if (phonePart.name.Contains("screw"))
+                {
+                    continue;
+                }
                 var r = _random.Next(2);
                 phonePart.broken = r > 0;
             }
