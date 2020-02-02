@@ -21,7 +21,7 @@ namespace Tools
 
             if (mat != null)
             {
-                SetColor(part, brokenMaterial);
+                SetColor(part, mat);
             }
         }
 
