@@ -1,11 +1,13 @@
 using System;
 using DefaultNamespace;
+using GameScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Assembler : MonoBehaviour
 {
     [SerializeField] private InventoryScript inventory;
+    [SerializeField] private DebugView debugView;
     [SerializeField] private new Camera camera;
     [SerializeField] private KeyCode key = KeyCode.Mouse0;
     [SerializeField] private Color assembleColor = Color.green;
@@ -17,11 +19,14 @@ public class Assembler : MonoBehaviour
     private bool _isReleased;
     private PhonePart _selected;
 
+    public GameState gameState;
 
     private void Start()
     {
         if (!camera) throw new ArgumentNullException(nameof(camera));
         if (!inventory) throw new ArgumentNullException(nameof(inventory));
+        if (!gameState) throw new ArgumentNullException(nameof(gameState));
+        if (!debugView) throw new ArgumentNullException(nameof(debugView));
 
         progressIcon.fillAmount = 0;
         _isReleased = true;
@@ -73,6 +78,9 @@ public class Assembler : MonoBehaviour
                                 break;
                             case ToolMode.Assemble:
                                 inventory.Remove(part);
+                                part.Phone.AddPart(part);
+                                gameState.CheckPhone(part.Phone);
+                                debugView.Refresh(part.Phone);
                                 break;
                             case ToolMode.Disassemble when !part.Disassemblable:
                                 Debug.Log("Item can not be disassembled");
@@ -80,6 +88,15 @@ public class Assembler : MonoBehaviour
                                 break;
                             case ToolMode.Disassemble:
                                 inventory.Add(part);
+                                part.Phone.RemovePart(part);
+                                debugView.Refresh(part.Phone);
+                                break;
+                            case ToolMode.Repair when part.Assembled:
+                                Debug.Log("Assembled items can not be repaired");
+                                // TODO show ui message
+                                break;
+                            case ToolMode.Repair:
+                                part.broken = false;
                                 break;
                         }
                     }

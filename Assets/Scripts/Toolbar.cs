@@ -25,7 +25,18 @@ public class Toolbar : MonoBehaviour
 
     private void SwapState()
     {
-        toolMode = toolMode == ToolMode.Assemble ? ToolMode.Disassemble : ToolMode.Assemble;
+        switch (toolMode)
+        {
+            case ToolMode.Assemble:
+                toolMode = ToolMode.Disassemble;
+                break;
+            case ToolMode.Disassemble:
+                toolMode = ToolMode.Repair;
+                break;
+            case ToolMode.Repair:
+                toolMode = ToolMode.Assemble;
+                break;
+        }
     }
 
     // Update is called once per frame
