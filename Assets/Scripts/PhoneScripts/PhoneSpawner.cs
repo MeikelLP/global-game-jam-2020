@@ -72,7 +72,7 @@ namespace PhoneScripts
                 }
                 
                 var r = _random.Next(100);
-                phonePart.broken = r < 25;
+                phonePart.broken = r < percentageDamaged;
             }
 
             return phone;
