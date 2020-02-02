@@ -43,4 +43,27 @@ public class PhonePart : MonoBehaviour
     {
         return $"{Phone.title}/{title}";
     }
+    
+    public void SetColor(Material mat)
+    {
+        if (TryGetComponent<MeshRenderer>(out var meshRenderer))
+        {
+            if (!OriginalMaterials.ContainsKey(meshRenderer))
+            {
+                OriginalMaterials.Add(meshRenderer, meshRenderer.sharedMaterial);
+            }
+            meshRenderer.sharedMaterial = mat;
+            return;
+        }
+        
+        var comps = GetComponentsInChildren<MeshRenderer>();
+        foreach (var partRenderer in comps)
+        {
+            if (!OriginalMaterials.ContainsKey(partRenderer))
+            {
+                OriginalMaterials.Add(partRenderer, partRenderer.sharedMaterial);
+            }
+            partRenderer.sharedMaterial = mat;
+        }
+    }
 }
