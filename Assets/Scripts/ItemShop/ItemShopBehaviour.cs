@@ -52,7 +52,7 @@ public class ItemShopBehaviour : MonoBehaviour
             }
         }
     }
-    
+
     private void FillShop(Phone phone)
     {
         Debug.Log(shopManager.phoneComponentList.Count);
@@ -63,7 +63,7 @@ public class ItemShopBehaviour : MonoBehaviour
             Texture2D tex2d;
             if (renderer.Images.TryGetValue(phonePart.ToString(), out tex2d))
             {
-                newButton.GetComponent<Image>().overrideSprite = Sprite.Create(tex2d,new Rect(0,0,tex2d.width,tex2d.height),new Vector2(tex2d.width/2,tex2d.height/2) );
+                newButton.GetComponent<Image>().sprite = Sprite.Create(tex2d,new Rect(0,0,tex2d.width,tex2d.height),new Vector2(tex2d.width/2,tex2d.height/2) );
             }
             else
             {
