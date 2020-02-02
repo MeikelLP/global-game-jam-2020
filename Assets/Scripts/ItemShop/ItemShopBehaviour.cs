@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using PhoneScripts;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 public class ItemShopBehaviour : MonoBehaviour
 {
@@ -23,23 +20,13 @@ public class ItemShopBehaviour : MonoBehaviour
     private CameraItemRenderer renderer;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        _keyInfoText = GetComponentInChildren<Text>();
-        _keyInfoText.text = "[" + _open.ToString() + "] Shop";
-        contentPage.SetActive(false);
-        renderer = FindObjectOfType<CameraItemRenderer>();
-    }
-
     public void Initialize(Phone phone)
     {
-        //StartCoroutine(renderer.StartRendering(phone));
-        StartCoroutine(WaitForRendering(phone));
-    }
+        _keyInfoText = GetComponentInChildren<Text>();
+        _keyInfoText.text = $"[{_open}] Shop";
+        contentPage.SetActive(false);
+        renderer = FindObjectOfType<CameraItemRenderer>();
 
-    private IEnumerator WaitForRendering(Phone phone)
-    {
-        yield return new WaitUntil(() => renderer.isRendered);
         FillShop(phone);
     }
 
@@ -64,14 +51,16 @@ public class ItemShopBehaviour : MonoBehaviour
     {
         foreach (var phonePart in phone.parts)
         {
-            GameObject newButton = Instantiate(button,Vector3.zero,Quaternion.identity,contentPage.transform);
-            newButton.GetComponent<Button>().onClick.AddListener((() => shopManager.BuyComponent(phonePart)));
+            GameObject newButton = Instantiate(button, Vector3.zero, Quaternion.identity, contentPage.transform);
+            newButton.GetComponent<Button>().onClick.AddListener(() => shopManager.BuyComponent(phonePart));
             Texture2D tex2d;
             if (!renderer.Images.TryGetValue(phonePart.ToString(), out tex2d) || !tex2d)
             {
                 throw new Exception();
             }
-            newButton.GetComponent<Image>().sprite = Sprite.Create(tex2d,new Rect(0,0,tex2d.width,tex2d.height),new Vector2(tex2d.width/2,tex2d.height/2) );
+
+            newButton.GetComponent<Image>().sprite = Sprite.Create(tex2d, new Rect(0, 0, tex2d.width, tex2d.height),
+                new Vector2(tex2d.width / 2, tex2d.height / 2));
         }
     }
 }

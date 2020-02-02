@@ -21,7 +21,7 @@ public class PhonePart : MonoBehaviour
     public bool Assemblable => Phone.GetDependents(this).All(x => x.Assembled);
 
     public bool Assembled { get; set; }
-    public Phone Phone { get; private set; }
+    public Phone Phone { get; set; }
 
     public void Initialize(Phone phone)
     {

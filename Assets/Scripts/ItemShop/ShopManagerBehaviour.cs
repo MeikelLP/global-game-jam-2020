@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using PhoneScripts;
-using UnityEditor;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public class ShopManagerBehaviour : MonoBehaviour
 {
     public BankAccountBehaviour account;
-
-    public InventoryScript inventory;
-
     public GameObject contentPage;
-    
+    public ItemShopBehaviour shop;
     [HideInInspector] public List<PhonePart> phoneComponentList;
 
-    public ItemShopBehaviour shop;
+    private InventoryScript _inventory;
 
     public bool IsListFilled { get; private set; }
 
@@ -43,17 +35,20 @@ public class ShopManagerBehaviour : MonoBehaviour
         {
             if (account.Debit(part.price))
             {
-                inventory.Add(Instantiate(part));
-                Debug.Log("Bought: " + part + " for " + part.price + " $!");
+                var cloned = Instantiate(part);
+                cloned.Phone = part.Phone;
+                _inventory.Add(cloned);
+                Debug.Log($"Bought: {part} for {part.price} $!");
             }
         }
     }
-    
+
     public void Initialize(Phone phone)
     {
         phoneComponentList = new List<PhonePart>();
         FillComponentList(phone);
         shop.Initialize(phone);
+
+        _inventory = FindObjectOfType<InventoryScript>();
     }
-    
 }
