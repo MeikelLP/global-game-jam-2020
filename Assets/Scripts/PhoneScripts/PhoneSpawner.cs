@@ -19,7 +19,7 @@ namespace PhoneScripts
         public PhoneFlipper phoneFlipper;
         public InventoryScript inventoryScript;
         public DebugView debugView;
-        public ShopManagerBehaviour shopManager;
+      
 
         // will be initialized from bootstrapper at runtime
         public void Initialize()
@@ -35,8 +35,6 @@ namespace PhoneScripts
             }
 
             Instance = this;
-
-            shopManager = FindObjectOfType<ShopManagerBehaviour>();
 
             Spawn();
         }
@@ -64,7 +62,6 @@ namespace PhoneScripts
             inventoryScript.ActivePhoneTransform = activePhoneTransform;
             inventoryScript.enabled = true;
             debugView.Refresh(ActivePhone);
-            shopManager.Initialize(ActivePhone);
         }
 
         private Phone DamagePhone(Phone phone)
