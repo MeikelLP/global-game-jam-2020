@@ -8,6 +8,7 @@ public class PhonePart : MonoBehaviour
     public string title;
     public bool broken;
 
+    public float price;
     public Vector3 OriginalLocalPosition { get; set; }
     public Quaternion OriginalLocalRotation { get; set; }
     public Vector3 OriginalLocalScale { get; set; }
@@ -20,7 +21,7 @@ public class PhonePart : MonoBehaviour
     public bool Assemblable => Phone.GetDependents(this).All(x => x.Assembled);
 
     public bool Assembled { get; set; }
-    public Phone Phone { get; private set; }
+    public Phone Phone { get; set; }
 
     public void Initialize(Phone phone)
     {

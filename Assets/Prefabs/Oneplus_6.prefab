@@ -133,6 +133,7 @@ MonoBehaviour:
   - {fileID: 7059095903963323281}
   title: CameraBump
   broken: 0
+  price: 100
 --- !u!64 &7420414136597301505
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -244,6 +245,7 @@ MonoBehaviour:
   - {fileID: 7703488912878220825}
   title: Body
   broken: 0
+  price: 45
 --- !u!64 &6712288120531461027
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -460,6 +462,7 @@ MonoBehaviour:
   - {fileID: 1518687525694783578}
   title: Screen
   broken: 0
+  price: 200
 --- !u!64 &8106263506356311501
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -570,6 +573,7 @@ MonoBehaviour:
   dependsOn: []
   title: Lid
   broken: 0
+  price: 20
 --- !u!64 &6424641725610323721
 MeshCollider:
   m_ObjectHideFlags: 0
