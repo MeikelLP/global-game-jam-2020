@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 566742319}
   - component: {fileID: 566742320}
   - component: {fileID: 566742321}
+  - component: {fileID: 566742322}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -714,6 +715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 566742317}
+  debugView: {fileID: 566742322}
   camera: {fileID: 1409969009}
   key: 323
   assembleColor: {r: 0, g: 1, b: 0, a: 1}
@@ -766,7 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfe844eadab7664cbf88b2f869a3d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomSpeed: 2
+  zoomSpeed: 0.1
   rotateKey: 324
   zoomKey: MouseScroll
   zoom: {fileID: 1903154444}
@@ -803,6 +805,21 @@ MonoBehaviour:
   - {fileID: 1287640595, guid: 1f32dffbd8ec2244ca2c230b33a9c21d, type: 3}
   phoneFlipper: {fileID: 566742315}
   inventoryScript: {fileID: 566742317}
+  debugView: {fileID: 566742322}
+--- !u!114 &566742322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566742312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ae0439d5484943934867a09387b6bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockenMaterial: {fileID: 2100000, guid: de9275544beb7e94a973e58ae78636c3, type: 2}
+  changableMaterial: {fileID: 2100000, guid: e7707a00d5a27b34092f623c8228f9bc, type: 2}
 --- !u!1 &623457257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2255,7 +2272,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 15.000001
+  field of view: 2
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -3654,8 +3671,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Width: 0
   m_Damping: 1
-  m_MinFOV: 15
-  m_MaxFOV: 60
+  m_MinFOV: 2
+  m_MaxFOV: 20
 --- !u!1 &1998388145
 GameObject:
   m_ObjectHideFlags: 0

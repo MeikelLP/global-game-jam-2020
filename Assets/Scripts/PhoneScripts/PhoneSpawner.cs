@@ -18,12 +18,16 @@ namespace PhoneScripts
         // scripts that need the phone
         public PhoneFlipper phoneFlipper;
         public InventoryScript inventoryScript;
+        public DebugView debugView;
 
         // will be initialized from bootstrapper at runtime
         public void Initialize()
         {
             if (Instance != null) return;
             if (!phonePosition) throw new NullReferenceException(nameof(phonePosition));
+            if (!phoneFlipper) throw new NullReferenceException(nameof(phoneFlipper));
+            if (!inventoryScript) throw new NullReferenceException(nameof(inventoryScript));
+            if (!debugView) throw new NullReferenceException(nameof(debugView));
             if (phonePrefabs.Length == 0)
             {
                 throw new InvalidOperationException("At least one phone prefab must be assigned");
@@ -50,11 +54,13 @@ namespace PhoneScripts
             ActivePhone = Instantiate(phonePrefab, phonePosition.transform.position, Quaternion.identity);
             var activePhoneTransform = DamagePhone(ActivePhone).transform;
             activePhoneTransform.parent = phonePosition.transform;
+            ActivePhone.Initialize();
 
             phoneFlipper.ActivePhoneTransform = activePhoneTransform;
             phoneFlipper.enabled = true;
             inventoryScript.ActivePhoneTransform = activePhoneTransform;
             inventoryScript.enabled = true;
+            debugView.Refresh(ActivePhone);
         }
 
         private Phone DamagePhone(Phone phone)

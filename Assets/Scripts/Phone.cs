@@ -18,11 +18,11 @@ public class Phone : MonoBehaviour
         return parts.Where(x => x.dependsOn.Contains(part));
     }
 
-    private void Start()
+    public void Initialize()
     {
         foreach (var part in parts)
         {
-            part.Phone = this;
+            part.Initialize(this);
         }
     }
 }

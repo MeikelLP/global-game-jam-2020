@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Assembler : MonoBehaviour
 {
     [SerializeField] private InventoryScript inventory;
+    [SerializeField] private DebugView debugView;
     [SerializeField] private new Camera camera;
     [SerializeField] private KeyCode key = KeyCode.Mouse0;
     [SerializeField] private Color assembleColor = Color.green;
@@ -22,6 +23,7 @@ public class Assembler : MonoBehaviour
     {
         if (!camera) throw new ArgumentNullException(nameof(camera));
         if (!inventory) throw new ArgumentNullException(nameof(inventory));
+        if (!debugView) throw new ArgumentNullException(nameof(debugView));
 
         progressIcon.fillAmount = 0;
         _isReleased = true;
@@ -73,6 +75,7 @@ public class Assembler : MonoBehaviour
                                 break;
                             case ToolMode.Assemble:
                                 inventory.Remove(part);
+                                debugView.Refresh(part.Phone);
                                 break;
                             case ToolMode.Disassemble when !part.Disassemblable:
                                 Debug.Log("Item can not be disassembled");
@@ -80,6 +83,7 @@ public class Assembler : MonoBehaviour
                                 break;
                             case ToolMode.Disassemble:
                                 inventory.Add(part);
+                                debugView.Refresh(part.Phone);
                                 break;
                         }
                     }
