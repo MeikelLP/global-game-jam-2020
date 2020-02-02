@@ -153,6 +153,7 @@ MonoBehaviour:
   scenesToLoad:
   - ItemRenderer
   - Inspect
+  - Inspect
 --- !u!4 &2062086135
 Transform:
   m_ObjectHideFlags: 0

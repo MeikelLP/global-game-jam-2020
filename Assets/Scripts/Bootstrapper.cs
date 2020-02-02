@@ -27,5 +27,8 @@ public class Bootstrapper : MonoBehaviour
 
         var renderer = FindObjectOfType<CameraItemRenderer>();
         StartCoroutine(renderer.StartRendering(spawner.ActivePhone));
+
+        var shop = FindObjectOfType<ShopManagerBehaviour>();
+        shop.Initialize(spawner.ActivePhone);
     }
 }

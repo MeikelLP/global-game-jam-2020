@@ -43,7 +43,7 @@ public class InventoryScript : MonoBehaviour
         invItem.GetComponent<Button>().onClick.AddListener(() =>
         {
             // ReSharper disable once Unity.NoNullPropagation
-            if (Toolbar.Instance.activeTool?.GetType() == typeof(Dissassembler))
+            if (Toolbar.Instance.activeTool?.GetType() == typeof(Assembler))
             {
                 if (phonePart.Assemblable)
                 {
@@ -53,6 +53,18 @@ public class InventoryScript : MonoBehaviour
                 else
                 {
                     UserFeedback.Instance.ShowInfoMessage("Phone part requires others to be installed first.");
+                }
+            }
+            // ReSharper disable once Unity.NoNullPropagation
+            if (Toolbar.Instance.activeTool?.GetType() == typeof(RepairTool))
+            {
+                if (phonePart.Assembled)
+                {
+                    Debug.Log("Assembled items can not be repaired");
+                }
+                else
+                {
+                    phonePart.broken = false;
                 }
             }
         });
