@@ -8,7 +8,8 @@ To take a look at all used 3rd Party Assets items used click [here](third_party_
 
 # User manual
 
-The game is controller with mouse and keyboard.
+The game is controlled with mouse and keyboard.
+The goal is to repair a broken phone by disassembling it, identifying the broken part(s), repairing the broken part(s) and reassembling the phone. 
 
 Basic controlls:
 * Click and drag right mouse button to rotate the phone
