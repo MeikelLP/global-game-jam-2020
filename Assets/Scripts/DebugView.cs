@@ -28,7 +28,7 @@ public class DebugView : MonoBehaviour
         }
 
         var changableParts = (Toolbar.Instance.toolMode == ToolMode.Disassemble
-            ? phone.parts.Where(x => x.Disassemblable)
+            ? phone.parts.Where(x => x.Disassemblable && !x.broken)
             : phone.parts.Where(x => x.Assemblable)).ToArray();
 
         foreach (var part in changableParts)

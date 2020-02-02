@@ -67,7 +67,7 @@ namespace PhoneScripts
         {
             foreach (var phonePart in phone.parts)
             {
-                var r = _random.Next(1);
+                var r = _random.Next(2);
                 phonePart.broken = r > 0;
             }
 
