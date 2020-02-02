@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tools
 {
-    public class Assembler : Tool
+    public class Dissassembler : Tool
     {
         [SerializeField] private InventoryScript inventory;
         [SerializeField] private GameState gameState;
@@ -19,15 +19,15 @@ namespace Tools
 
         protected override void OnInteract(PhonePart part)
         {
-            if (!part.Assemblable)
+            if (!part.Disassemblable)
             {
-                Debug.Log("Item can not be assembled");
+                Debug.Log("Item can not be disassembled");
+                // TODO show ui message that part can not be dissembled
             }
             else
             {
-                inventory.Remove(part);
-                part.Phone.AddPart(part);
-                gameState.CheckPhone(part.Phone);
+                inventory.Add(part);
+                part.Phone.RemovePart(part);
             }
         }
     }

@@ -1,5 +1,4 @@
 using System;
-using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 
@@ -9,8 +8,9 @@ public class Toolbar : MonoBehaviour
 
     [SerializeField] private Tool[] tools;
     [SerializeField] private TextMeshProUGUI toolModeText;
-    [HideInInspector] public ToolMode toolMode;
     [SerializeField] private KeyCode key = KeyCode.S;
+
+    public Tool activeTool;
 
     private void Start()
     {
@@ -19,24 +19,33 @@ public class Toolbar : MonoBehaviour
 
         if (!toolModeText) throw new ArgumentNullException(nameof(toolModeText));
 
-        toolMode = ToolMode.Disassemble;
+        foreach (var tool in tools)
+        {
+            tool.enabled = false;
+            tool.hoverIcon.enabled = false;
+        }
+
         toolModeText.text = key.ToString();
+        NextTool();
     }
 
-    private void SwapState()
+    private void NextTool()
     {
-        switch (toolMode)
+        var index = Array.FindIndex(tools, x => x == activeTool);
+        index++;
+        if (index >= tools.Length)
         {
-            case ToolMode.Assemble:
-                toolMode = ToolMode.Disassemble;
-                break;
-            case ToolMode.Disassemble:
-                toolMode = ToolMode.Repair;
-                break;
-            case ToolMode.Repair:
-                toolMode = ToolMode.Assemble;
-                break;
+            index = 0;
         }
+
+        if (activeTool)
+        {
+            activeTool.hoverIcon.enabled = false;
+            activeTool.enabled = false;
+        }
+
+        activeTool = tools[index];
+        activeTool.enabled = true;
     }
 
     // Update is called once per frame
@@ -44,7 +53,7 @@ public class Toolbar : MonoBehaviour
     {
         if (Input.GetKeyDown(key))
         {
-            SwapState();
+            NextTool();
         }
     }
 }
