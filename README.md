@@ -8,11 +8,9 @@ To take a look at all used 3rd Party Assets items used click [here](third_party_
 
 ## User manual
 
-The goal of the game is to repair all broken parts of a phone.
-
-The game is controller with mouse and keyboard.
-
-The game does not have sound.
+* The goal of the game is to repair all broken parts of a phone.
+* The game is controller with mouse and keyboard.
+* The game does not have sound.
 
 Basic controls:
 
@@ -27,3 +25,7 @@ Tools:
 * Assembler: Use this tool to add items from the inventory to the phone. Broken parts can not be assembled into the phone.
 * Repair: Disassembled parts can be repaired in the inventory. Once repaired, the can be reassembled into the phone.
 * Analyzer: Use this tool to check which part is broken.
+
+## Known Bugs
+
+* You can only fix one phone as of right now. There are 2 phones in the game. Please restart the game until you get the other phone (random chance).
