@@ -1,5 +1,4 @@
 using System;
-using Tools;
 using UnityEngine;
 using Random = System.Random;
 
@@ -19,7 +18,6 @@ namespace PhoneScripts
         // scripts that need the phone
         public PhoneFlipper phoneFlipper;
         public InventoryScript inventoryScript;
-        public DebugView debugView;
 
         public int percentageDamaged = 25;
 
@@ -30,7 +28,6 @@ namespace PhoneScripts
             if (!phonePosition) throw new NullReferenceException(nameof(phonePosition));
             if (!phoneFlipper) throw new NullReferenceException(nameof(phoneFlipper));
             if (!inventoryScript) throw new NullReferenceException(nameof(inventoryScript));
-            if (!debugView) throw new NullReferenceException(nameof(debugView));
             if (phonePrefabs.Length == 0)
             {
                 throw new InvalidOperationException("At least one phone prefab must be assigned");
@@ -63,7 +60,6 @@ namespace PhoneScripts
             phoneFlipper.enabled = true;
             inventoryScript.ActivePhoneTransform = activePhoneTransform;
             inventoryScript.enabled = true;
-            debugView.Refresh(ActivePhone);
         }
 
         private Phone DamagePhone(Phone phone)
