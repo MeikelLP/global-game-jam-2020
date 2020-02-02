@@ -41,17 +41,23 @@ namespace Tools
 
         private static void SetColor(PhonePart part, Material mat)
         {
-            if (part.TryGetComponent<MeshRenderer>(out var comp))
+            if (part.TryGetComponent<MeshRenderer>(out var meshRenderer))
             {
-                part.OriginalMaterials.Add(comp, comp.sharedMaterial);
-                comp.sharedMaterial = mat;
+                if (!part.OriginalMaterials.ContainsKey(meshRenderer))
+                {
+                    part.OriginalMaterials.Add(meshRenderer, meshRenderer.sharedMaterial);
+                }
+                meshRenderer.sharedMaterial = mat;
             }
             else
             {
                 var comps = part.GetComponentsInChildren<MeshRenderer>();
                 foreach (var renderer in comps)
                 {
-                    part.OriginalMaterials.Add(renderer, renderer.sharedMaterial);
+                    if (!part.OriginalMaterials.ContainsKey(renderer))
+                    {
+                        part.OriginalMaterials.Add(renderer, renderer.sharedMaterial);
+                    }
                     renderer.sharedMaterial = mat;
                 }
             }
