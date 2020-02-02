@@ -4,7 +4,7 @@ namespace Tools
 {
     public class RepairTool : Tool
     {
-        [SerializeField] private Material dissasemblableMaterial;
+        public Material dissasemblableMaterial;
 
         protected override void OnInteract(PhonePart part)
         {
