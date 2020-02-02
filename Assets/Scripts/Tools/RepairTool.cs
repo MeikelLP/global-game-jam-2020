@@ -4,6 +4,8 @@ namespace Tools
 {
     public class RepairTool : Tool
     {
+        public Material dissasemblableMaterial;
+
         protected override void OnInteract(PhonePart part)
         {
             if (part.Assembled)
@@ -13,6 +15,7 @@ namespace Tools
             else
             {
                 part.broken = false;
+                part.SetColor(dissasemblableMaterial);
             }
         }
     }

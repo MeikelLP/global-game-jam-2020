@@ -56,7 +56,7 @@ public class InventoryScript : MonoBehaviour
                 }
             }
             // ReSharper disable once Unity.NoNullPropagation
-            if (Toolbar.Instance.activeTool?.GetType() == typeof(RepairTool))
+            if (Toolbar.Instance.activeTool is RepairTool repairTool)
             {
                 if (phonePart.Assembled)
                 {
@@ -66,6 +66,7 @@ public class InventoryScript : MonoBehaviour
                 {
                     phonePart.broken = false;
                     invItem.transform.Find("Indicator").gameObject.SetActive(false);
+                    phonePart.SetColor(repairTool.dissasemblableMaterial);
                 }
             }
         });
