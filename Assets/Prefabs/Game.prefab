@@ -156,6 +156,7 @@ MonoBehaviour:
   - {fileID: 1287640595, guid: 1f32dffbd8ec2244ca2c230b33a9c21d, type: 3}
   phoneFlipper: {fileID: 5083121523798706575}
   inventoryScript: {fileID: 5083121523798706569}
+  percentageDamaged: 25
 --- !u!114 &5083121523798706583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +286,8 @@ MonoBehaviour:
   key: 323
   camera: {fileID: 0}
   progressIcon: {fileID: 5083121523392908558}
+  infoText: {fileID: 5083121523711855227}
+  name: Assembler
   hoverIcon: {fileID: 5083121524339218929}
   inventory: {fileID: 5083121523798706569}
   gameState: {fileID: 5083121523798706583}
@@ -304,6 +307,8 @@ MonoBehaviour:
   key: 323
   camera: {fileID: 0}
   progressIcon: {fileID: 5083121523392908558}
+  infoText: {fileID: 5083121523711855227}
+  name: Analyzer
   hoverIcon: {fileID: 2278821665119108675}
   brokenMaterial: {fileID: 2100000, guid: de9275544beb7e94a973e58ae78636c3, type: 2}
   dissasemblableMaterial: {fileID: 2100000, guid: e7707a00d5a27b34092f623c8228f9bc,
@@ -324,6 +329,8 @@ MonoBehaviour:
   key: 323
   camera: {fileID: 0}
   progressIcon: {fileID: 5083121523392908558}
+  infoText: {fileID: 5083121523711855227}
+  name: Disassembler
   hoverIcon: {fileID: 1720952496177534970}
   inventory: {fileID: 5083121523798706569}
   gameState: {fileID: 5083121523798706583}
@@ -343,6 +350,8 @@ MonoBehaviour:
   key: 323
   camera: {fileID: 0}
   progressIcon: {fileID: 5083121523392908558}
+  infoText: {fileID: 5083121523711855227}
+  name: Repair Tool
   hoverIcon: {fileID: 5130034408765751370}
 --- !u!1001 &4144348880736205587
 PrefabInstance:
@@ -479,6 +488,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4144348880736205587}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5083121523711855227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9153934859531284840, guid: 2d686c30093b6d1459537903bb429ee8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4144348880736205587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5083121525010860933 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9153934858701746326, guid: 2d686c30093b6d1459537903bb429ee8,
