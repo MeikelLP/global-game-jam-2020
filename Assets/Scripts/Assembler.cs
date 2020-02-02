@@ -1,5 +1,6 @@
 using System;
 using DefaultNamespace;
+using GameScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ public class Assembler : MonoBehaviour
     private bool _isReleased;
     private PhonePart _selected;
 
+    public GameState gameState;
 
     private void Start()
     {
@@ -74,6 +76,7 @@ public class Assembler : MonoBehaviour
                             case ToolMode.Assemble:
                                 inventory.Remove(part);
                                 part.Phone.AddPart(part);
+                                gameState.CheckPhone(part.Phone);
                                 break;
                             case ToolMode.Disassemble when !part.Disassemblable:
                                 Debug.Log("Item can not be disassembled");
