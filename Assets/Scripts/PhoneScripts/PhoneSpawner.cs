@@ -57,7 +57,7 @@ namespace PhoneScripts
             ActivePhone.Initialize();
 
             phoneFlipper.ActivePhoneTransform = activePhoneTransform;
-            phoneFlipper.enabled = true;
+            phoneFlipper.Refresh();
             inventoryScript.ActivePhoneTransform = activePhoneTransform;
             inventoryScript.enabled = true;
         }
