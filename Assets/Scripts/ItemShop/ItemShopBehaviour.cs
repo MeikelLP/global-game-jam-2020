@@ -39,7 +39,7 @@ public class ItemShopBehaviour : MonoBehaviour
 
     private IEnumerator WaitForRendering(Phone phone)
     {
-        yield return new WaitUntil(() => renderer.rendered);
+        yield return new WaitUntil(() => renderer.isRendered);
         FillShop(phone);
     }
 

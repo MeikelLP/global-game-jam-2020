@@ -7,6 +7,8 @@ public class CameraItemRenderer : MonoBehaviour
     [SerializeField] private RenderTexture renderTexture;
     [SerializeField] private Transform positionAnchor;
 
+    public bool isRendered = false;
+
     public Dictionary<string, Texture2D> Images { get; } = new Dictionary<string, Texture2D>();
 
     public IEnumerator StartRendering(Phone phone)
@@ -35,6 +37,8 @@ public class CameraItemRenderer : MonoBehaviour
             t.SetParent(originalParent, false);
             t.localPosition = originalLocalPosition;
             t.localRotation = originalLocalRotation;
+
+            isRendered = true;
         }
     }
 
