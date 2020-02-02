@@ -50,6 +50,7 @@ public class ShopManagerBehaviour : MonoBehaviour
             {
                 var cloned = Instantiate(part);
                 cloned.Phone = part.Phone;
+                cloned.broken = false;
                 _inventory.Add(cloned);
                 Debug.Log($"Bought: {part} for {part.price} $!");
             }
