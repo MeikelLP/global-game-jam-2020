@@ -36,6 +36,10 @@ public class InventoryScript : MonoBehaviour
         invItem.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
             new Vector2(0.5f, 0.5f));
         invItem.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = phonePart.ToString();
+        if (!phonePart.broken)
+        {
+            invItem.transform.Find("Indicator").gameObject.SetActive(false);
+        }
         invItem.GetComponent<Button>().onClick.AddListener(() =>
         {
             // ReSharper disable once Unity.NoNullPropagation
@@ -56,11 +60,12 @@ public class InventoryScript : MonoBehaviour
             {
                 if (phonePart.Assembled)
                 {
-                    Debug.Log("Assembled items can not be repaired");
+                    UserFeedback.Instance.ShowInfoMessage("Assembled items can not be repaired");
                 }
                 else
                 {
                     phonePart.broken = false;
+                    invItem.transform.Find("Indicator").gameObject.SetActive(false);
                 }
             }
         });
