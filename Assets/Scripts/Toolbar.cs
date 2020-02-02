@@ -9,6 +9,7 @@ public class Toolbar : MonoBehaviour
     [SerializeField] private Tool[] tools;
     [SerializeField] private TextMeshProUGUI toolModeText;
     [SerializeField] private KeyCode key = KeyCode.S;
+    [SerializeField] private Transform toolInfoContainer;
 
     public Tool activeTool;
 
@@ -32,6 +33,7 @@ public class Toolbar : MonoBehaviour
     private void NextTool()
     {
         var index = Array.FindIndex(tools, x => x == activeTool);
+        if (index >= 0) toolInfoContainer.GetChild(index).GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
         index++;
         if (index >= tools.Length)
         {
@@ -43,6 +45,8 @@ public class Toolbar : MonoBehaviour
             activeTool.hoverIcon.enabled = false;
             activeTool.enabled = false;
         }
+
+        toolInfoContainer.GetChild(index).GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
 
         activeTool = tools[index];
         activeTool.enabled = true;

@@ -9,8 +9,6 @@ public abstract class Tool : MonoBehaviour
     [SerializeField] private KeyCode key = KeyCode.Mouse0;
     [SerializeField] private new Camera camera;
     [SerializeField] private Image progressIcon;
-    [SerializeField] private TextMeshProUGUI infoText;
-    [SerializeField] private new string name;
     public SVGImage hoverIcon;
 
     private float _progress;
@@ -25,7 +23,6 @@ public abstract class Tool : MonoBehaviour
 
         progressIcon.fillAmount = 0;
         _isReleased = true;
-        infoText.text = name;
     }
 
     private void OnDisable()
