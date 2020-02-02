@@ -8,8 +8,9 @@ To take a look at all used 3rd Party Assets items used click [here](third_party_
 
 # User manual
 
-The game is controlled with mouse and keyboard.
-The goal is to repair a broken phone by disassembling it, identifying the broken part(s), repairing the broken part(s) and reassembling the phone. 
+The goal of the game is to repair all broken parts of a phone.
+
+The game is controller with mouse and keyboard.
 
 Basic controlls:
 * Click and drag right mouse button to rotate the phone
@@ -18,7 +19,7 @@ Basic controlls:
 * The phone can be flipped to see the back by clicking the "E" button.
 
 Tools:
-* Assembler: 
-* Disassembler: 
-* Repair: 
-* Analyser: 
+* Disassembler: Use this tool to remove parts from the phone. Removed parts will be added to the to the inventory.
+* Assembler: Use this tool to add items from the inventory to the phone. Broken parts can not be assembled into the phone.
+* Repair: Dissassembled parts can be repaired in the inventory. Once repaired, the can be reassembled into the phone.
+* Analyser: Use this tool to check whick part is broken.
