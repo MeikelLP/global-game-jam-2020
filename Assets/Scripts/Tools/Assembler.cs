@@ -21,12 +21,12 @@ namespace Tools
         {
             if (part.Assembled)
             { 
-                Debug.Log("Part already assembled");
+                UserFeedback.Instance.ShowInfoMessage("Part already assembled");
                 return;
             }
             if (!part.Assemblable)
             {
-                Debug.Log("Item is not be assemblable");
+                UserFeedback.Instance.ShowInfoMessage("Part already assembled");
                 return;
             }
             

@@ -21,8 +21,7 @@ namespace Tools
         {
             if (!part.Disassemblable)
             {
-                Debug.Log("Item can not be disassembled");
-                // TODO show ui message that part can not be dissembled
+                UserFeedback.Instance.ShowInfoMessage("Item can not be disassembled!");
             }
             else
             {
