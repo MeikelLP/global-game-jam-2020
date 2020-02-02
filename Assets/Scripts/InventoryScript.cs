@@ -58,15 +58,9 @@ public class InventoryScript : MonoBehaviour
             // ReSharper disable once Unity.NoNullPropagation
             if (Toolbar.Instance.activeTool is RepairTool repairTool)
             {
-                if (phonePart.Assembled)
+                if (repairTool.Repair(phonePart))
                 {
-                    UserFeedback.Instance.ShowInfoMessage("Assembled items can not be repaired");
-                }
-                else
-                {
-                    phonePart.broken = false;
                     invItem.transform.Find("Indicator").gameObject.SetActive(false);
-                    phonePart.SetColor(repairTool.dissasemblableMaterial);
                 }
             }
         });

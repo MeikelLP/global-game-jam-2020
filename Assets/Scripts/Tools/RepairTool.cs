@@ -8,15 +8,19 @@ namespace Tools
 
         protected override void OnInteract(PhonePart part)
         {
-            if (part.Assembled)
+            Repair(part);
+        }
+
+        public bool Repair(PhonePart phonePart)
+        {
+            if (phonePart.Assembled)
             {
                 UserFeedback.Instance.ShowInfoMessage("Assembled items can not be repaired");
+                return false;
             }
-            else
-            {
-                part.broken = false;
-                part.SetColor(dissasemblableMaterial);
-            }
+            phonePart.broken = false;
+            phonePart.SetColor(dissasemblableMaterial);
+            return true;
         }
     }
 }
