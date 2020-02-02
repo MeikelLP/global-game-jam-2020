@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class ItemShopBehaviour : MonoBehaviour
 {
     private Text _keyInfoText;
-
-    public KeyCode _open;
-
+    
     public GameObject contentPage;
 
     private List<Image> _images;
@@ -23,29 +21,14 @@ public class ItemShopBehaviour : MonoBehaviour
     public void Initialize(Phone phone)
     {
         _keyInfoText = GetComponentInChildren<Text>();
-        _keyInfoText.text = $"[{_open}] Shop";
-        contentPage.SetActive(false);
+        _keyInfoText.text = $"[{shopManager._open}] Shop";
         renderer = FindObjectOfType<CameraItemRenderer>();
 
         FillShop(phone);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(_open))
-        {
-            if (contentPage.activeSelf)
-            {
-                contentPage.SetActive(false);
-                Debug.Log(shopManager.phoneComponentList.Count);
-            }
-            else
-            {
-                contentPage.SetActive(true);
-            }
-        }
-    }
+    
 
     private void FillShop(Phone phone)
     {
