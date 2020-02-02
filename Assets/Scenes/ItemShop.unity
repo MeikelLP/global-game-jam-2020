@@ -258,6 +258,11 @@ PrefabInstance:
       propertyPath: shopManager
       value: 
       objectReference: {fileID: 597970540}
+    - target: {fileID: 6446730481880885268, guid: edb7cff6215d35a42a2e621c6f96555d,
+        type: 3}
+      propertyPath: renderer
+      value: 
+      objectReference: {fileID: 226731149}
     - target: {fileID: 6446730481880885269, guid: edb7cff6215d35a42a2e621c6f96555d,
         type: 3}
       propertyPath: m_Name
@@ -549,6 +554,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa061eb61c1060848bcdf7454cb056fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &929639252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6446730482095342393, guid: edb7cff6215d35a42a2e621c6f96555d,
+    type: 3}
+  m_PrefabInstance: {fileID: 196048884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1092185427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,13 +1166,18 @@ PrefabInstance:
         type: 3}
       propertyPath: contentPage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 929639252}
     - target: {fileID: 534763640176150299, guid: c6c87f17fc6387f4c86f9bba4dd187f8,
         type: 3}
       propertyPath: phones.Array.data[0]
       value: 
       objectReference: {fileID: 1287640595, guid: 1f32dffbd8ec2244ca2c230b33a9c21d,
         type: 3}
+    - target: {fileID: 534763640176150299, guid: c6c87f17fc6387f4c86f9bba4dd187f8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 534763640176150300, guid: c6c87f17fc6387f4c86f9bba4dd187f8,
         type: 3}
       propertyPath: m_Name

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using PhoneScripts;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -14,7 +15,7 @@ public class ShopManagerBehaviour : MonoBehaviour
     public GameObject contentPage;
 
     public Phone[] phones;
-
+    
     [HideInInspector] public List<PhonePart> phoneComponentList;
 
     public bool IsListFilled { get; private set; }
@@ -25,16 +26,10 @@ public class ShopManagerBehaviour : MonoBehaviour
         {
             if (phones[i])
             {
-                StartCoroutine(WaitForPhoneInit(phones[i]));
+                AddComponentsFromPhoneToList(phones[i]);
             }
         }
         IsListFilled = true;
-    }
-
-    private IEnumerator WaitForPhoneInit(Phone phone)
-    {
-        yield return new WaitUntil(() => phone.initialized);
-        AddComponentsFromPhoneToList(phone);
     }
 
     private void AddComponentsFromPhoneToList(Phone phone)
@@ -60,7 +55,7 @@ public class ShopManagerBehaviour : MonoBehaviour
         }
     }
     
-    public void Start()
+    public void Initialize()
     {
         phoneComponentList = new List<PhonePart>();
         FillComponentList();

@@ -26,15 +26,17 @@ public class ItemShopBehaviour : MonoBehaviour
         _keyInfoText = GetComponentInChildren<Text>();
         _keyInfoText.text = "[" + _open.ToString() + "] Shop";
         contentPage.SetActive(false);
-        StartCoroutine(WaitForFilledList());
-        StartCoroutine(WaitForOneSecondToFillShop());
+        StartCoroutine(WaitForInit());
     }
 
-    private IEnumerator WaitForFilledList()
+    private IEnumerator WaitForInit()
     {
         yield return new WaitUntil(() => shopManager.IsListFilled);
         RenderPhones();
+        FillShop();
+        Debug.Log("Shop filled!");
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -59,23 +61,10 @@ public class ItemShopBehaviour : MonoBehaviour
         {
             if (phone)
             {
-                StartCoroutine(WaitForPhoneInit(phone));
+                StartCoroutine(renderer.StartRendering(phone));
             }
         }
     }
-
-    private IEnumerator WaitForPhoneInit(Phone phone)
-    {
-        yield return new WaitUntil(() => phone.initialized);
-        StartCoroutine(renderer.StartRendering(phone));
-    }
-
-    private IEnumerator WaitForOneSecondToFillShop()
-    {
-        yield return new WaitForSeconds(1);
-        FillShop();
-    }
-
     private void FillShop()
     {
         Debug.Log(shopManager.phoneComponentList.Count);
