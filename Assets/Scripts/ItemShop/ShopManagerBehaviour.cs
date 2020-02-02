@@ -17,7 +17,7 @@ public class ShopManagerBehaviour : MonoBehaviour
 
     [HideInInspector] public List<PhonePart> phoneComponentList;
 
-    public bool isListFilled { get; private set; }
+    public bool IsListFilled { get; private set; }
 
     private void FillComponentList()
     {
@@ -25,17 +25,27 @@ public class ShopManagerBehaviour : MonoBehaviour
         {
             if (phones[i])
             {
-                for (int j = 0; j < phones[i].parts.Length; j++)
-                {
-                    if (phones[i].parts[j])
-                    {
-                        phoneComponentList.Add(phones[i].parts[j]);
-                    }
-                }
+                StartCoroutine(WaitForPhoneInit(phones[i]));
             }
         }
+        IsListFilled = true;
+    }
 
-        isListFilled = true;
+    private IEnumerator WaitForPhoneInit(Phone phone)
+    {
+        yield return new WaitUntil(() => phone.initialized);
+        AddComponentsFromPhoneToList(phone);
+    }
+
+    private void AddComponentsFromPhoneToList(Phone phone)
+    {
+        foreach (var phonePart in phone.parts)
+        {
+            if (phonePart)
+            {
+                phoneComponentList.Add(phonePart);
+            }
+        }
     }
 
     public void BuyComponent(PhonePart part)
