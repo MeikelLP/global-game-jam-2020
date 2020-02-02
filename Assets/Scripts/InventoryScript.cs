@@ -43,11 +43,11 @@ public class InventoryScript : MonoBehaviour
         invItem.GetComponent<Button>().onClick.AddListener(() =>
         {
             // ReSharper disable once Unity.NoNullPropagation
-            if (Toolbar.Instance.activeTool?.GetType() == typeof(Assembler))
+            if (Toolbar.Instance.activeTool is Assembler assembler)
             {
                 if (phonePart.Assemblable)
                 {
-                    Remove(phonePart);
+                    assembler.Assemble(phonePart);
                     Destroy(invItem);
                 }
                 else

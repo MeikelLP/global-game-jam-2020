@@ -31,22 +31,27 @@ public class Phone : MonoBehaviour
     public void RemovePart(PhonePart toRemove)
     {
         var currentNumberOfParts = parts.Length;
-        for (int i = 0; i < currentNumberOfParts; i++)
-        {
-            if (parts[i] == toRemove)
-            {
-                // switch the last element with the current
-                parts[i] = parts[currentNumberOfParts - 1];
-                return;
-            }
-        }
+        var tmp = parts.ToList();
+        tmp.Remove(toRemove);
+        parts = tmp.ToArray();
+        // for (int i = 0; i < currentNumberOfParts; i++)
+        // {
+        //     if (parts[i] == toRemove)
+        //     {
+        //         // switch the last element with the current
+        //         parts[i] = parts[currentNumberOfParts - 1];
+        //         return;
+        //     }
+        // }
     }
     
     public void AddPart(PhonePart toAdd)
     {
         // TODO check that one unique part can only be added once
         // TODO check that the correct amount of screws is assembled
-        parts[parts.Length-1] = toAdd;
+        var tmp = parts.ToList();
+        tmp.Add(toAdd);
+        parts = tmp.ToArray();
     }
 
     /// <summary>
