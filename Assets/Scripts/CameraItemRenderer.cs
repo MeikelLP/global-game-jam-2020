@@ -9,7 +9,7 @@ public class CameraItemRenderer : MonoBehaviour
 
     public Dictionary<string, Texture2D> Images { get; } = new Dictionary<string, Texture2D>();
 
-    private IEnumerator StartRendering(Phone phone)
+    public IEnumerator StartRendering(Phone phone)
     {
         var waitForEndOfFrame = new WaitForEndOfFrame();
 
@@ -23,6 +23,7 @@ public class CameraItemRenderer : MonoBehaviour
         foreach (var part in phone.parts)
         {
             var t = part.transform;
+            var originalParent = t.parent;
             var originalLocalPosition = t.localPosition;
             var originalLocalRotation = t.localRotation;
 
@@ -30,8 +31,8 @@ public class CameraItemRenderer : MonoBehaviour
 
             yield return waitForEndOfFrame;
 
-            Images.Add(part.ToString(), ToTexture2D(renderTexture, Images[part.ToString()]));
-            t.SetParent(phone.transform);
+            Images[part.ToString()] = ToTexture2D(renderTexture, Images[part.ToString()]);
+            t.SetParent(originalParent, false);
             t.localPosition = originalLocalPosition;
             t.localRotation = originalLocalRotation;
         }

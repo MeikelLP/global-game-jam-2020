@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1850286967466810950}
   - component: {fileID: 7275156791769162864}
   - component: {fileID: 4020032101949642889}
+  - component: {fileID: 6026356542200019594}
+  - component: {fileID: 1254754154153989308}
   m_Layer: 0
   m_Name: screw
   m_TagString: Untagged
@@ -79,3 +81,33 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6026356542200019594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456182763813743701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a317c4f87c8d4d0e8d4b1bd378e2e438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependsOn:
+  - {fileID: 0}
+  title: screw
+  broken: 0
+--- !u!64 &1254754154153989308
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456182763813743701}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5076798556035486163, guid: a715e0119e140b642b4ce0e906dc04e1, type: 3}
