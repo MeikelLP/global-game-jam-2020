@@ -13,22 +13,16 @@ public class ShopManagerBehaviour : MonoBehaviour
     public InventoryScript inventory;
 
     public GameObject contentPage;
-
-    public Phone[] phones;
     
     [HideInInspector] public List<PhonePart> phoneComponentList;
 
+    public ItemShopBehaviour shop;
+
     public bool IsListFilled { get; private set; }
 
-    private void FillComponentList()
+    private void FillComponentList(Phone phone)
     {
-        for (int i = 0; i < phones.Length; i++)
-        {
-            if (phones[i])
-            {
-                AddComponentsFromPhoneToList(phones[i]);
-            }
-        }
+        AddComponentsFromPhoneToList(phone);
         IsListFilled = true;
     }
 
@@ -50,15 +44,16 @@ public class ShopManagerBehaviour : MonoBehaviour
             if (account.Debit(part.price))
             {
                 inventory.Add(Instantiate(part));
-                Debug.Log("Bought: " + part.title + "for" + part.price + " $!");
+                Debug.Log("Bought: " + part + " for " + part.price + " $!");
             }
         }
     }
     
-    public void Initialize()
+    public void Initialize(Phone phone)
     {
         phoneComponentList = new List<PhonePart>();
-        FillComponentList();
+        FillComponentList(phone);
+        shop.Initzialize(phone);
     }
     
 }

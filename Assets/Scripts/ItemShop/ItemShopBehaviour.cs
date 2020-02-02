@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PhoneScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,7 @@ public class ItemShopBehaviour : MonoBehaviour
 
     public GameObject button;
 
-    public CameraItemRenderer renderer;
+    private CameraItemRenderer renderer;
 
     // Start is called before the first frame update
     void Start()
@@ -26,17 +27,14 @@ public class ItemShopBehaviour : MonoBehaviour
         _keyInfoText = GetComponentInChildren<Text>();
         _keyInfoText.text = "[" + _open.ToString() + "] Shop";
         contentPage.SetActive(false);
-        StartCoroutine(WaitForInit());
+        renderer = FindObjectOfType<CameraItemRenderer>();
     }
 
-    private IEnumerator WaitForInit()
+    public void Initzialize(Phone phone)
     {
-        yield return new WaitUntil(() => shopManager.IsListFilled);
-        RenderPhones();
-        FillShop();
-        Debug.Log("Shop filled!");
+        StartCoroutine(renderer.StartRendering(phone));
+        FillShop(phone);
     }
-    
 
     // Update is called once per frame
     void Update()
@@ -54,29 +52,18 @@ public class ItemShopBehaviour : MonoBehaviour
             }
         }
     }
-
-    private void RenderPhones()
-    {
-        foreach (var phone in shopManager.phones)
-        {
-            if (phone)
-            {
-                StartCoroutine(renderer.StartRendering(phone));
-            }
-        }
-    }
-    private void FillShop()
+    
+    private void FillShop(Phone phone)
     {
         Debug.Log(shopManager.phoneComponentList.Count);
-        foreach (var phonePart in shopManager.phoneComponentList)
+        foreach (var phonePart in phone.parts)
         {
             GameObject newButton = Instantiate(button,Vector3.zero,Quaternion.identity,contentPage.transform);
             newButton.GetComponent<Button>().onClick.AddListener((() => shopManager.BuyComponent(phonePart)));
-            newButton.transform.SetParent(contentPage.transform);
             Texture2D tex2d;
             if (renderer.Images.TryGetValue(phonePart.ToString(), out tex2d))
             {
-                newButton.GetComponent<Image>().sprite = Sprite.Create(tex2d,new Rect(0,0,tex2d.width,tex2d.height),new Vector2(0.5f,0.5f) );
+                newButton.GetComponent<Image>().overrideSprite = Sprite.Create(tex2d,new Rect(0,0,tex2d.width,tex2d.height),new Vector2(tex2d.width/2,tex2d.height/2) );
             }
             else
             {

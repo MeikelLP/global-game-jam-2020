@@ -63,8 +63,8 @@ namespace PhoneScripts
             phoneFlipper.enabled = true;
             inventoryScript.ActivePhoneTransform = activePhoneTransform;
             inventoryScript.enabled = true;
-            shopManager.Initialize();
             debugView.Refresh(ActivePhone);
+            shopManager.Initialize(ActivePhone);
         }
 
         private Phone DamagePhone(Phone phone)
