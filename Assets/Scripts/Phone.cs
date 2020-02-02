@@ -45,9 +45,9 @@ public class Phone : MonoBehaviour
     
     public void AddPart(PhonePart toAdd)
     {
-        // TODO do unique check
-        // TODO do out of bounds check
-        parts[parts.Length] = toAdd;
+        // TODO check that one unique part can only be added once
+        // TODO check that the correct amount of screws is assembled
+        parts[parts.Length-1] = toAdd;
     }
 
     /// <summary>

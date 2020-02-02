@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 public class Inventory
 {
-    private const int ItemsPerRow = 15;
+    private const int ItemsPerRow = 30;
     public const float PositionY = 1f;
 
     private readonly GameObject[] _inventoryItems = new GameObject[ItemsPerRow];
