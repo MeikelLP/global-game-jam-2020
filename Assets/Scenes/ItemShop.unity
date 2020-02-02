@@ -338,6 +338,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6446730483629451855, guid: edb7cff6215d35a42a2e621c6f96555d,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6446730483706987648, guid: edb7cff6215d35a42a2e621c6f96555d,
         type: 3}
       propertyPath: m_IsActive
@@ -490,6 +495,11 @@ PrefabInstance:
       propertyPath: shop
       value: 
       objectReference: {fileID: 795077050}
+    - target: {fileID: 534763640176150299, guid: c6c87f17fc6387f4c86f9bba4dd187f8,
+        type: 3}
+      propertyPath: _open
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 534763640176150300, guid: c6c87f17fc6387f4c86f9bba4dd187f8,
         type: 3}
       propertyPath: m_Name
