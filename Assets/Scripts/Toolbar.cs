@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Toolbar : MonoBehaviour
 {
@@ -27,6 +28,19 @@ public class Toolbar : MonoBehaviour
         }
 
         toolModeText.text = key.ToString();
+
+        for (var i = 0; i < toolInfoContainer.childCount; i++)
+        {
+            var index = i;
+            toolInfoContainer.GetChild(i).GetComponent<Button>().onClick.AddListener(() =>
+            {
+                while (activeTool != tools[index])
+                {
+                    NextTool();
+                }
+            });
+        }
+
         NextTool();
     }
 
