@@ -23,6 +23,7 @@ namespace GameScripts
             // despawn old phone
             // TODO award money
             // TODO increase timer
+            // TODO show message about finished phone
             Destroy(phone);
             
             phoneSpawner.Spawn();
